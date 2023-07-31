@@ -1,0 +1,84 @@
+name: qibla_finder
+description: A new Flutter project.
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  new_version: ^0.3.1
+  flutter_spinkit: ^5.1.0
+  get: ^4.6.5
+  intl: ^0.17.0
+  shared_preferences: ^2.0.15
+  cupertino_icons: ^1.0.2
+  cached_network_image: ^3.2.1
+  flutter_fadein: ^2.0.0
+  flutter_compass: ^0.7.0
+  geolocator: ^9.0.2
+  #flutter_qiblah: ^2.2.0
+  carousel_slider: ^4.0.0-nullsafety.0
+  permission_handler: ^10.2.0
+  geodart: ^0.2.8
+  geocoding: ^2.1.0
+  shimmer_animation: ^2.0.0
+  flutter_inappwebview: ^5.7.2+3
+  url_launcher: ^6.1.10
+  hijri: ^3.0.0
+  vibration:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/image/
+    - assets/icon/
+    - assets/prayer_icon/
+    - assets/banner/
+    - assets/service_icon/
+    - assets/font/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/font/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/font/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/font/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/font/Poppins-Black.ttf
+          weight: 900
+    - family: Oswald
+      fonts:
+        - asset: assets/font/Oswald-Regular.ttf
+          weight: 400
+        - asset: assets/font/Oswald-Medium.ttf
+          weight: 500
+        - asset: assets/font/Oswald-Bold.ttf
+          weight: 700
