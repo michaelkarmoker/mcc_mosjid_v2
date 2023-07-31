@@ -40,9 +40,9 @@ final appBarTextStyle = TextStyle(
 final bluecolor=Color(0xff00569B);
 
 //final Color compassPrimaryColor=Color(0xffe4e2dc);
-final Color compassPrimaryColor=Color(0xff202121);
+final Color compassPrimaryColor=Color(0xff022B32);
 //final Color compassPrimaryDarkColor=Color(0xffc5c2bd);
-final Color compassPrimaryDarkColor=Color(0xff202121);
+final Color compassPrimaryDarkColor=Colors.black;
 final Color greenColor=Color(0xffcadabc);
 final Color greenDarkColor=Color(0xff48800e);
 final Color redColor=Color(0xffee0909);

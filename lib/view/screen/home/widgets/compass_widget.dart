@@ -103,7 +103,7 @@ class _CompassScreenState extends State<CompassWidgets> {
                                   ),
 
 
-                                  CompassDisplay(size: size,),
+                                 // CompassDisplay(size: size,),
 
                                   Transform.rotate(
                                     angle: (controller.bearing * pi / 180),

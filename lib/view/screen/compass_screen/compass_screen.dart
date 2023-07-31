@@ -131,7 +131,7 @@ class _CompassScreenState extends State<CompassScreen> with SingleTickerProvider
                                   ),
 
 
-                                  CompassDisplay(size: size,),
+                                 // CompassDisplay(size: size,),
                                   Transform.rotate(
                                     angle: (controller.bearing * pi / 180),
                                     //angle: 0,
