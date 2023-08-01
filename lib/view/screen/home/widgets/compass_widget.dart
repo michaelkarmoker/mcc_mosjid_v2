@@ -128,7 +128,7 @@ class _CompassScreenState extends State<CompassWidgets> {
                                       )*/
                                                   height: size.height*0.1800,
                                                   width: size.width*0.12,
-                                                  color: Colors.red,
+                                                  color: Colors.amber,
                                                 ),),
 
                                                 ClipShadowPath(shadow: Shadow(

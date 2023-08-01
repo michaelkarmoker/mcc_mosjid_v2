@@ -27,7 +27,7 @@ class PrayerTimeWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   button(isRight: false),
-                  Text("${date}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge),),
+                  Text("${date}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge,color: Colors.white),),
                   button(isRight: true),
                 ],
               ),

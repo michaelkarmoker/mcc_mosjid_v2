@@ -106,131 +106,134 @@ class _CompassScreenState extends State<CompassScreen> with SingleTickerProvider
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
-                            "assets/image/qibla_bg_ss.jpg"
+                            "assets/image/qibla_bg_ss.png"
                         ),
-                        fit:BoxFit.fitHeight
+                        fit:BoxFit.fill
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: Stack(
-                    children: [
-                      Neumorphism(
-                        margin: EdgeInsets.all(size.width*0.1),
-                        padding: EdgeInsets.all(10),
-                        child: AnimatedBuilder(
-                          animation: animation!,
-                          builder: (context, child) {
-                            return Transform.rotate(
-                             // angle: (direction! *(pi/180)*-1),
-                              angle: animation!.value,
-                              child: Stack(
-                                children: [
-                                  CustomPaint(
-                                    size: size,
-                                    painter: CompassViewPainter(color: grayColor,qiblaPositon: controller.bearing),
-                                  ),
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Stack(
+                      children: [
+                        Neumorphism(
+                          margin: EdgeInsets.all(size.width*0.1),
+                          padding: EdgeInsets.all(10),
+                          child: AnimatedBuilder(
+                            animation: animation!,
+                            builder: (context, child) {
+                              return Transform.rotate(
+                               // angle: (direction! *(pi/180)*-1),
+                                angle: animation!.value,
+                                child: Stack(
+                                  children: [
+                                    CustomPaint(
+                                      size: size,
+                                      painter: CompassViewPainter(color: grayColor,qiblaPositon: controller.bearing),
+                                    ),
 
 
-                                 // CompassDisplay(size: size,),
-                                  Transform.rotate(
-                                    angle: (controller.bearing * pi / 180),
-                                    //angle: 0,
-                                    child: Stack(
-                                      children: [
-                                        Container(
+                                   // CompassDisplay(size: size,),
+                                    Transform.rotate(
+                                      angle: (controller.bearing * pi / 180),
+                                      //angle: 0,
+                                      child: Stack(
+                                        children: [
+                                          Container(
 
-                                          child: Center(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
+                                            child: Center(
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
 
-                                                ClipShadowPath(shadow: Shadow(
-                                                    blurRadius: 1
-                                                ), clipper: TrianglePainter(isReverse: false), child: Container(
-                                                  /*child: Padding(
-                                          padding: const EdgeInsets.only(top: 30.0,left: 10,right: 10),
-                                          child: Image.asset("assets/icon/kaaba.png",height: 5,),
-                                        )*/
-                                                  height: 80,
-                                                  width: 50,
-                                                  color: Colors.red,
-                                                ),),
+                                                  ClipShadowPath(shadow: Shadow(
+                                                      blurRadius: 1
+                                                  ), clipper: TrianglePainter(isReverse: false), child: Container(
+                                                    /*child: Padding(
+                                            padding: const EdgeInsets.only(top: 30.0,left: 10,right: 10),
+                                            child: Image.asset("assets/icon/kaaba.png",height: 5,),
+                                          )*/
+                                                    height: 80,
+                                                    width: 50,
+                                                    color: Colors.amber,
+                                                  ),),
 
-                                                ClipShadowPath(shadow: Shadow(
-                                                    blurRadius: 1,
-                                                    color: Colors.grey.shade900
-                                                ), clipper: TrianglePainter(isReverse: true), child: Container(
-                                                  height: 80,
-                                                  width: 50,
-                                                  color: Colors.grey,
-                                                ),)
-                                              ],
+                                                  ClipShadowPath(shadow: Shadow(
+                                                      blurRadius: 1,
+                                                      color: Colors.grey.shade900
+                                                  ), clipper: TrianglePainter(isReverse: true), child: Container(
+                                                    height: 80,
+                                                    width: 50,
+                                                    color: Colors.grey,
+                                                  ),)
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Positioned(
-                                            top: (size.height/2)-size.height*0.405,
-                                            left:(size.width/2)-size.width*0.19,
-                                            child: Image.asset("assets/icon/kaaba.png",height: 50,width: 50,))
+                                          Positioned(
+                                              top: (size.height/2)-size.height*0.405,
+                                              left:(size.width/2)-size.width*0.19,
+                                              child: Image.asset("assets/icon/kaaba.png",height: 50,width: 50,))
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              );
+                            }
+                          ),
+                        ),
+                       //
+
+                        /*Positioned(
+                            top: size.height*0.2,
+                            right: (size.width*0.5)-20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text("${headingDegree(direction!).toInt().toString().padLeft(3,"0")}°",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),),
+                                Text("${getDirection(direction!)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                              ],
+                            )),*/
+
+                        Positioned(
+                            top: size.height*0.086,
+                            right: (size.width*0.5)-29,
+                            child: Container(
+                              child: Image.asset("assets/icon/star.png",height:50,color:isEqualToDegree(direction!,controller.bearing,controller.isVibration)? Colors.amberAccent:Colors.grey,),
+                            )),
+
+                        controller.locationAddress!=null?Positioned(
+                            top: size.height-220,
+                            right: 0,
+                            child: Container(
+                              padding: EdgeInsets.only(left: 20,right: 20),
+                              width: Get.width,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.all(Radius.circular(8))
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.pin_drop,size: 30,color:greenColor,),
+                                        SizedBox(width: 5,),
+                                        Text("${controller.locationAddress}",style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault,color: Colors.white),),
                                       ],
                                     ),
                                   ),
-
                                 ],
                               ),
-                            );
-                          }
-                        ),
-                      ),
-                     //
+                            )):SizedBox(),
 
-                      /*Positioned(
-                          top: size.height*0.2,
-                          right: (size.width*0.5)-20,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("${headingDegree(direction!).toInt().toString().padLeft(3,"0")}°",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),),
-                              Text("${getDirection(direction!)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                            ],
-                          )),*/
-
-                      Positioned(
-                          top: size.height*0.086,
-                          right: (size.width*0.5)-29,
-                          child: Container(
-                            child: Image.asset("assets/icon/star.png",height:50,color:isEqualToDegree(direction!,controller.bearing,controller.isVibration)? Colors.amberAccent:Colors.grey,),
-                          )),
-
-                      controller.locationAddress!=null?Positioned(
-                          top: size.height-220,
-                          right: 0,
-                          child: Container(
-                            padding: EdgeInsets.only(left: 20,right: 20),
-                            width: Get.width,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.all(Radius.circular(8))
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.pin_drop,size: 30,color:greenColor,),
-                                      SizedBox(width: 5,),
-                                      Text("${controller.locationAddress}",style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault),),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )):SizedBox(),
-
-                    ],
+                      ],
+                    ),
                   ),
                 );
               }

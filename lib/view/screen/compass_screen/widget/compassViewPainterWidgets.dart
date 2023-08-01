@@ -39,7 +39,7 @@ late final majorScalePaint=Paint()
   );
 
   late final cardinalityStyle=TextStyle(
-      color: Colors.black87,
+      color: Colors.white70,
       fontSize: cardinalityFontSize,
     fontWeight: FontWeight.bold
   );
