@@ -43,9 +43,10 @@ class HomeController extends GetxController implements GetxService {
 
     sliders!.add(new SliderModel(imageUrl:"assets/banner/banner1.jpg",isButton: true));
   ///  sliders!.add(new SliderModel(imageUrl:"assets/banner/banner2.jpg" ));
-    sliders!.add(new SliderModel(imageUrl:"assets/banner/banner3.jpg",isButton: true ));
+    sliders!.add(new SliderModel(imageUrl:"assets/banner/banner2.png",isButton: true ));
+    sliders!.add(new SliderModel(imageUrl:"assets/banner/banner3.png",isButton: true ));
     sliders!.add(new SliderModel(imageUrl:"assets/banner/banner4.jpg",subImage: "assets/banner/banner4Sub.png",isButton: true  ));
-    sliders!.add(new SliderModel(imageUrl:"assets/banner/banner5.jpg" ,isButton: true));
+  //  sliders!.add(new SliderModel(imageUrl:"assets/banner/banner5.jpg" ,isButton: true));
     sliders!.add(new SliderModel(imageUrl:"assets/banner/banner6.jpg",isButton: true ));
     sliders!.add(new SliderModel(imageUrl:"assets/banner/banner7.jpg" ,isButton: true));
 

@@ -22,7 +22,7 @@ class OurServiceWidgetList extends StatelessWidget {
               itemCount:serviceList.length,
                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                    childAspectRatio:  MediaQuery.of(context).size.width /
-                       (MediaQuery.of(context).size.height / 1.6),
+                       (MediaQuery.of(context).size.height / 1.3),
                    mainAxisSpacing:15 ,
                    crossAxisSpacing: 15,
 
@@ -55,14 +55,14 @@ class OurServiceWidgetList extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 35,),
-                        Image.asset(serviceList[index].icon!,height: 50,),
+                        SizedBox(height: 44,),
+                        Image.asset(serviceList[index].icon!,height: 48,),
                         SizedBox(height: 10,),
-                        Text("${serviceList[index].title}",style: robotoMedium.copyWith(color: Colors.white),),
+                        Text("${serviceList[index].title}",style: robotoMedium.copyWith(color: Colors.white,fontSize:15),),
                         SizedBox(height: 5,),
                         Text("${serviceList[index].description}",textAlign:TextAlign.center,style: robotoRegular.copyWith(
                             color: Colors.white,
-                            height:1.1,fontSize: Dimensions.fontSizeSmall),),
+                            height:1.3,fontSize:13),),
 
                       ],
                     ),

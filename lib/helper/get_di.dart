@@ -4,7 +4,9 @@ import 'dart:convert';
 
 import 'package:qibla_finder/controller/auth_controller.dart';
 import 'package:qibla_finder/controller/home_controller.dart';
+import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/data/api/api_client.dart';
+import 'package:qibla_finder/data/repository/prayer_repo.dart';
 import 'package:qibla_finder/util/app_constants.dart';
 import 'package:flutter/services.dart';
 
@@ -30,8 +32,10 @@ Future<void> init() async {
   //repo
 
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+  Get.lazyPut(() => PrayerRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => CompassController());
   Get.lazyPut(() => HomeController());
+  Get.lazyPut(() => PrayerController(prayerRepo: Get.find()));
 
 
 

@@ -2,13 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/util/dimensions.dart';
 
 import '../../../../util/styles.dart';
 
 class PrayerTimeWidget extends StatelessWidget {
   final String date;
-  const PrayerTimeWidget({super.key, required this.date});
+  final PrayerController controller;
+
+  const PrayerTimeWidget({super.key, required this.date, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +21,20 @@ class PrayerTimeWidget extends StatelessWidget {
         child: Column(
           children: [
 
-            SizedBox(height: 5,),
+          /*  SizedBox(height: 5,),
             Container(
 
               padding: EdgeInsets.only(left: 10,right: 10,top: 10),
 
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  button(isRight: false),
+                //  button(isRight: false),
                   Text("${date}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge,color: Colors.white),),
-                  button(isRight: true),
+                //  button(isRight: true),
                 ],
               ),
-            ),
+            ),*/
             SizedBox(height: 10,),
             Container(
                 decoration: BoxDecoration(
@@ -45,7 +48,7 @@ class PrayerTimeWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: title(),
                 ),
-                prayerTimeRow(icon: 'assets/prayer_icon/fajr.png',title: "Fajr",adhanTime: '03:17 AM', time: '03:27 AM',),
+             /*   prayerTimeRow(icon: 'assets/prayer_icon/fajr.png',title: "Fajr",adhanTime: '03:17 AM', time: '03:27 AM',),
 
                 prayerTimeRow(icon: 'assets/prayer_icon/sunrise.png',title: "Sunrise",adhanTime: '04:50 AM', time: '05:04 AM'),
 
@@ -55,21 +58,20 @@ class PrayerTimeWidget extends StatelessWidget {
 
                 prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "Magrib",adhanTime: '07:30 PM', time: '07:43 PM'),
 
-                prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "Isha", adhanTime: '09:5 PM',time: '09:20 PM'),
+                prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "Isha", adhanTime: '09:5 PM',time: '09:20 PM'),*/
 
+                prayerTimeRow(icon: 'assets/prayer_icon/fajr.png',title: "${controller.prayerTimeList[0].prayerName}",adhanTime: '${controller.prayerTimeList[0].azanTime}', time: '${controller.prayerTimeList[0].prayerTime}',),
 
-            /*  //  Divider(height: 1,color: Colors.black54,),
-                prayerTimeRow(icon: 'assets/prayer_icon/fajr.png',title: "Fajr", time: '04:01 AM'),
-              //  Divider(height: 0.1,color: Colors.black26),
-                prayerTimeRow(icon: 'assets/prayer_icon/sunrise.png',title: "Sunrise", time: '05:25 AM'),
-              //  Divider(height: 0.1,color: Colors.black26),
-                prayerTimeRow(icon: 'assets/prayer_icon/dhuhr.png',title: "Dhuhr", time: '12:04 PM'),
-              //  Divider(height: 0.1,color: Colors.black26),
-                prayerTimeRow(icon: 'assets/prayer_icon/asar.png',title: "Asar", time: '04:43 PM'),
-                //Divider(height: 0.1,color: Colors.black26),
-                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "Magrib", time: '06:44 PM'),
-               // Divider(height: 0.1,color: Colors.black26),
-                prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "Isha", time: '08:08 PM'),*/
+                //timeBox(icon: 'assets/prayer_icon/sunrise.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
+                prayerTimeRow(icon: 'assets/prayer_icon/dhuhr.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
+
+                prayerTimeRow(icon: 'assets/prayer_icon/asar.png',title: "${controller.prayerTimeList[2].prayerName}",adhanTime: '${controller.prayerTimeList[2].azanTime}', time: '${controller.prayerTimeList[2].prayerTime}'),
+
+                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "${controller.prayerTimeList[3].prayerName}",adhanTime: '${controller.prayerTimeList[3].azanTime}', time: '${controller.prayerTimeList[3].prayerTime}'),
+
+                prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "${controller.prayerTimeList[4].prayerName}",adhanTime: '${controller.prayerTimeList[4].azanTime}', time: '${controller.prayerTimeList[4].prayerTime}'),
+
+                prayerTimeRow(icon: 'assets/prayer_icon/jummah.png',title: "${controller.prayerTimeList[5].prayerName}", adhanTime: '${controller.prayerTimeList[5].azanTime}',time: '${controller.prayerTimeList[5].prayerTime}'),
               ],
             ))
           ],

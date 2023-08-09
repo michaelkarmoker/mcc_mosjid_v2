@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qibla_finder/controller/home_controller.dart';
 import 'package:qibla_finder/util/app_constants.dart';
 import 'package:qibla_finder/view/screen/webViewPage/web_view_screen.dart';
 
@@ -12,6 +13,7 @@ import '../../../controller/auth_controller.dart';
 import '../../../util/images.dart';
 import '../../../util/styles.dart';
 import '../about_us/about_us.dart';
+import '../auth/signIn.dart';
 import '../become_volunteer/become_Volunteer_screen.dart';
 import 'createDrawerHeader.dart';
 import 'creeateDrawerBodyItem.dart';
@@ -90,6 +92,29 @@ class _DrawerState extends State<DrawerLayout> {
                   ),
 
 
+
+                  Get.find<AuthController>().isLoggedIn()?
+                  createDrawerBodyItem(
+                      icon: Images.logout,
+                      text: 'Member Logout',
+                      onTap: (){
+                        Navigator.pop(context);
+                       Get.find<AuthController>().signOut();
+                       Get.find<HomeController>().update();
+
+
+
+                      }
+
+                  ):createDrawerBodyItem(
+                      icon: Images.login,
+                      text: 'Member Login',
+                      onTap: () =>{
+                        Get.to(SignIn(exitFromApp: false,))
+
+                      }
+
+                  ),
 
                   SizedBox(height: 50,),
 

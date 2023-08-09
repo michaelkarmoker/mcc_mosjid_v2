@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 
 
@@ -25,8 +26,17 @@ class AuthRepo {
   }*/
 
   Future<Response> login({required LoginBody loginBody}) async {
+    String ask="mccsl_app_secret_key";
+    final bytes = utf8.encode(ask);
+    final base64ASK = base64.encode(bytes);
+    print(base64ASK);
+    final id = utf8.encode(loginBody.password!);
+    final base64AuthId = base64.encode(id);
    // return await apiClient.postData(AppConstants.LOGIN_URI, {"jsonData":jsonEncode(loginBody.toJson())});
-    return await apiClient.postData(AppConstants.LOGIN_URI, loginBody.toJson());
+    return await apiClient.getData(AppConstants.LOGIN_URI, query: {
+      "mauth":base64AuthId,
+      "ask":base64ASK
+    });
   }
 
 
@@ -64,10 +74,10 @@ class AuthRepo {
 
 
   // for  Remember Email
-  Future<void> saveUserNameAndPassword(String name, String password,) async {
+  Future<void> saveUserNameAndPassword(String password,) async {
     try {
       await sharedPreferences.setString(AppConstants.USER_PASSWORD, password);
-      await sharedPreferences.setString(AppConstants.USER_NAME, name);
+
 
     } catch (e) {
       throw e;
@@ -117,12 +127,7 @@ class AuthRepo {
   String getUserName() {
     return sharedPreferences.getString(AppConstants.USER_NAME) ?? "";
   }
-  String getStudentId() {
-    return sharedPreferences.getString(AppConstants.STUDENT_ID) ?? "";
-  }
-  String getStudetMobile() {
-    return sharedPreferences.getString(AppConstants.STUDENT_MOBILE) ?? "";
-  }
+
   String getUserPermission() {
     return sharedPreferences.getString(AppConstants.USER_NAME) ?? "";
   }
@@ -149,7 +154,7 @@ class AuthRepo {
 
 
     //await sharedPreferences.remove(AppConstants.USER_PASSWORD);
-    await sharedPreferences.remove(AppConstants.USERID);
+    //await sharedPreferences.remove(AppConstants.USERID);
     //await sharedPreferences.remove(AppConstants.USER_NAME);
     return await sharedPreferences.remove(AppConstants.TOKEN);
 

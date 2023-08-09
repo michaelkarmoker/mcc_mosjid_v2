@@ -45,12 +45,9 @@ class AuthController extends GetxController implements GetxService {
   }
 
   Future<void> setuserName() async {
-    String userName = getUserName();
+
     String password = getUserPassword();
-    emailController.text = userName;
     passwordController.text = password;
-    mobile.text=getStudentMobile();
-    studentId.text=getStudentId();
   }
 
   Future<void> login(LoginBody loginBody) async {
@@ -60,36 +57,33 @@ class AuthController extends GetxController implements GetxService {
     Response response = await authRepo.login(loginBody: loginBody);
 
 
+
     if (response.statusCode == 200) {
-       /*loginResponse =LoginResponse.fromJson(response.body);
-       *//*await authRepo.saveUserId(loginResponse!.)*//*
-       if(_isActiveRememberMe){
-         loginResponse!.isStudent!?await authRepo.saveStudentIdAndMobile(loginBody.studentId!, loginBody.mobile_no!):
-         await authRepo.saveUserNameAndPassword(loginBody.user_name!, loginBody.password!);
+      var data= jsonDecode(response.body);
 
-       }else{
-         await authRepo.clearUserNumberAndPassword();
-       }
-       await authRepo.saveUserType(loginResponse!.isStudent!?"0":"1");
-         loginResponse!.isStudent!?await authRepo.saveUserProfile(
-             loginResponse!.isStudent!,
-             loginResponse!.student!.name!,
+      if(data["statusCode"]==200){
+        if(_isActiveRememberMe){
+          await authRepo.saveUserNameAndPassword( loginBody.password!);
+        }else{
+          await authRepo.clearUserNumberAndPassword();
+        }
 
-             loginResponse!.student!.studentId!, loginResponse!.student!.mobile, loginResponse!.student!.image):
-         await authRepo.saveUserProfile(
-             loginResponse!.isStudent!,
-             loginResponse!.user!.name!, loginResponse!.user!.email.toString(),
-             " ", loginResponse!.user!.image);
-        await authRepo.saveUserToken(loginResponse!.token!.original!.accessToken!);
-        loginResponse!.isStudent!?await authRepo.saveUserId(loginResponse!.student!.id.toString()):
-        await authRepo.saveUserId(loginResponse!.user!.id.toString());*/
+
+        await authRepo.saveUserToken(data["apps_token"]);
+
+
 
         showCustomSnackBar("Login Successfully",isError: false);
         Get.offAll(HomeScreen());
+      }else{
+        showCustomSnackBar("Login Failed",isError: true);
+      }
+
+
 
     } else {
 
-      showCustomSnackBar(response.body["message"]);
+      showCustomSnackBar("Something wrong with internet");
 
     }
 
@@ -100,17 +94,17 @@ class AuthController extends GetxController implements GetxService {
 
 
   void loginVerification() async {
-    String _email = emailController.text.trim();
+   /* String _email = emailController.text.trim();*/
     String _password = passwordController.text.trim();
 
-      if (_email.isEmpty) {
+      /*if (_email.isEmpty) {
         showCustomSnackBar('Enter username');
-      } else if (_password.isEmpty) {
-        showCustomSnackBar('Enter password');
+      } else*/ if (_password.isEmpty) {
+        showCustomSnackBar('Enter Your Auth ID');
       } else if (_password.length < 5) {
-        showCustomSnackBar('The Password must be at least 5 Characters');
+        showCustomSnackBar('The Auth ID must be at least 6 Characters');
       } else {
-        login(LoginBody(user_name: _email, password: _password));
+        login(LoginBody(password: _password));
       }
 
   }
@@ -136,21 +130,16 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.getUserId() ?? "";
   }
   void saveUserNameAndPassword(
-    String UserName,
+
     String password,
   ) {
-    authRepo.saveUserNameAndPassword(UserName, password);
+    authRepo.saveUserNameAndPassword(password);
   }
 
   String getUserName() {
     return authRepo.getUserName() ?? "";
   }
-  String getStudentId() {
-    return authRepo.getStudentId() ?? "";
-  }
-  String getStudentMobile() {
-    return authRepo.getStudetMobile() ?? "";
-  }
+
   String getUserPassword() {
     return authRepo.getUserPassword() ?? "";
   }

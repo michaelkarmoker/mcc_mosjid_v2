@@ -49,7 +49,7 @@ class _signInState extends State<SignIn> {
         .addPostFrameCallback((_) {
           Get.find<AuthController>().setuserName();
 
-          Get.find<AuthController>().getUserName().isNotEmpty?Get.find<AuthController>().isActiveRememberMe=true:Get.find<AuthController>().isActiveRememberMe=false;
+          Get.find<AuthController>().getUserPassword().isNotEmpty?Get.find<AuthController>().isActiveRememberMe=true:Get.find<AuthController>().isActiveRememberMe=false;
           Get.find<AuthController>().update();
         });
 
@@ -58,7 +58,7 @@ class _signInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return  Scaffold(
 
-
+        resizeToAvoidBottomInset : false,
         body: WillPopScope(
 
           onWillPop: ()async {
@@ -94,10 +94,19 @@ class _signInState extends State<SignIn> {
             child: GetBuilder<AuthController>(
 
               builder: (authController) {
-                return SingleChildScrollView(
+                return Container(
+                    height: Get.height,
+                  decoration:BoxDecoration(
+
+                    image: DecorationImage(
+                      image: AssetImage("assets/image/login_bg.jpg"),
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
                   child: Container(
-                      height: Get.height,
+                    color: Colors.black.withOpacity(0.6),
                     child: Center(
+
                       child: Padding(
                         padding: const EdgeInsets.only(left: 30.0,right: 30),
                         child: Column(
@@ -106,11 +115,12 @@ class _signInState extends State<SignIn> {
 
                             Card(
                               elevation: 4,
+                              color: Colors.transparent,
                               child: Container(
 
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    color: Colors.white24
+                                    color: Colors.white.withOpacity(0.9)
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.all(10),
@@ -118,7 +128,7 @@ class _signInState extends State<SignIn> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       SizedBox(height:10),
-                                      Image.asset(Images.logo,height: Get.height/8,),
+                                      Image.asset(Images.logo,height: Get.height/7,),
 
                                       Container(
                                         padding: EdgeInsets.all(10),
@@ -130,7 +140,7 @@ class _signInState extends State<SignIn> {
 
                                             Column(
                                               children: [
-                                                CustomTextField(
+                                               /* CustomTextField(
 
                                                   hintText: "Email",
                                                   controller: authController.emailController,
@@ -140,17 +150,20 @@ class _signInState extends State<SignIn> {
                                                   capitalization: TextCapitalization.words,
                                                   divider: false, onSubmit: (){}, prefixIcon:'assets/icon/user.png',
 
-                                                ),
+                                                ),*/
                                                 CustomTextField(
 
-                                                  hintText: "Password",
+                                                  hintText: "Auth ID",
                                                   controller: authController.passwordController,
                                                   focusNode: _passwordFocus,
                                                   inputAction: TextInputAction.done,
                                                   inputType: TextInputType.visiblePassword,
                                                   capitalization: TextCapitalization.words,
                                                   divider: false,
-                                                  isPassword: true, prefixIcon: "assets/icon/lock.png", onSubmit: (){}, nextFocus: null,
+                                                  isPassword: true, prefixIcon: "assets/icon/lock.png", onSubmit: (value){
+                                                    print("hii");
+                                                  authController.loginVerification();
+                                                }, nextFocus: null,
 
                                                 ),
                                               ],

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:qibla_finder/controller/auth_controller.dart';
 import 'package:qibla_finder/controller/compass_controller.dart';
+import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/helper/date_converter.dart';
 import 'package:qibla_finder/view/screen/prayer_time_screen/widget/prayer_time_widget.dart';
 
@@ -37,95 +39,125 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
 
         centerTitle: false,
         title: Container(child: Text("Salah Timings",style: appBarTextStyle.copyWith(fontSize: Dimensions.fontSizeExtraLarge),)),
-      ),
-      body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                    "assets/image/qibla_bg_ss.png"
-                ),
-                fit:BoxFit.fill
+        actions: [
+          Get.find<AuthController>().isLoggedIn()?InkWell(
+            onTap: (){
+
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                 Image.asset("assets/icon/edit.png",width: 20,),
+                  SizedBox(width: 10,)
+                ],
+              ),
             ),
+          ):SizedBox()
+        ],
+      ),
+      body: GetBuilder<PrayerController>(
 
-          ),
-        child: Container(
-          decoration: BoxDecoration(
-               gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                   end: Alignment.bottomCenter,
-                   colors: [
+        builder: (controller) {
+          return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                        "assets/image/qibla_bg_ss.png"
+                    ),
+                    fit:BoxFit.fill
+                ),
 
-                  Colors.black.withOpacity(0.9),
-                     Colors.black.withOpacity(0.3),
+              ),
+            child: Container(
+              decoration: BoxDecoration(
+                   gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                       end: Alignment.bottomCenter,
+                       colors: [
 
-               ]
+                      Colors.black.withOpacity(0.9),
+                         Colors.black.withOpacity(0.3),
 
-               ),
+                   ]
+
+                   ),
 
 
 
-          ),
-          child: Column(
-             children: [
-             Container(
-               alignment: Alignment.bottomLeft,
-               width: Get.width,
-               height: Get.height/3.5,
-               decoration: BoxDecoration(
-                 image: DecorationImage(
-                   image: AssetImage("assets/image/bg_head.jpg"),
-                   fit: BoxFit.cover
-                 )
-               ),
-               child:Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              child: Column(
                  children: [
-                   Container(
-                     height: 110,
-                     width: Get.width,
-                     padding: EdgeInsets.all(10),
-                     decoration: BoxDecoration(
-                         color: Colors.black.withOpacity(0.2),
+                 Container(
+                   alignment: Alignment.bottomLeft,
+                   width: Get.width,
+                   height: Get.height/3.5,
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage("assets/image/bg_head.jpg"),
+                       fit: BoxFit.cover
+                     )
+                   ),
+                   child:Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Container(
+                         height: 110,
+                         width: Get.width,
+                         padding: EdgeInsets.all(10),
+                         decoration: BoxDecoration(
+                             gradient: LinearGradient(
+                               begin: Alignment.topLeft,
+                               end: Alignment.topRight,
+                               colors: [
+                                 Colors.black.withOpacity(0.8),
+                                 Colors.black.withOpacity(0.0),
 
-                     ),
 
-                     child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
+                               ]
+                             )
 
-                         SizedBox(height: 10,),
-                         Row(
+                         ),
+
+                         child: Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                             Icon(Icons.circle,size: 20,color: Color(0xffD6E8D6)),
-                             SizedBox(width: 10,),
-                             Column(
+
+                             SizedBox(height: 10,),
+                             Row(
+                               children: [
+                                 Icon(Icons.circle,size: 20,color: Color(0xffD6E8D6)),
+                                 SizedBox(width: 10,),
+                                 Column(
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                     Text("${DateConverter.isoStringToLocalDateOnly(DateTime.now().toIso8601String())}",style: robotoMedium.copyWith(color: Colors.white),),
+                                     Text("${HijriCalendar.now().toFormat("MMMM dd yyyy")}",style: robotoMedium.copyWith(color: Colors.white)),
+                                   ],
+                                 ),
+                               ],
+                             ),
+                             SizedBox(height: 10,),
+                             Get.find<CompassController>().locationAddress==null?SizedBox():Row(
                                crossAxisAlignment: CrossAxisAlignment.start,
                                children: [
-                                 Text("${DateConverter.isoStringToLocalDateOnly(DateTime.now().toIso8601String())}",style: robotoMedium.copyWith(color: Colors.white),),
-                                 Text("${HijriCalendar.now().toFormat("MMMM dd yyyy")}",style: robotoMedium.copyWith(color: Colors.white)),
+                                 Icon(Icons.pin_drop,size: 20,color:Color(0xffD6E8D6),),
+                                 SizedBox(width: 10,),
+                                 Text("${Get.find<CompassController>().locationAddress}",style: robotoMedium.copyWith(color: Colors.white)),
                                ],
                              ),
                            ],
                          ),
-                         SizedBox(height: 10,),
-                         Row(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Icon(Icons.pin_drop,size: 20,color:Color(0xffD6E8D6),),
-                             SizedBox(width: 10,),
-                             Text("${Get.find<CompassController>().locationAddress}",style: robotoMedium.copyWith(color: Colors.white)),
-                           ],
-                         ),
-                       ],
-                     ),
-                   ),
+                       ),
+                     ],
+                   ) ,
+                 ),
+                  PrayerTimeWidget(date: HijriCalendar.now().toFormat("MMMM dd yyyy"), controller: controller,)
                  ],
-               ) ,
-             ),
-              PrayerTimeWidget(date: HijriCalendar.now().toFormat("MMMM dd yyyy"),)
-             ],
-          ),
-        ),
+              ),
+            ),
+          );
+        }
       ),
     );
   }

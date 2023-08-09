@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qibla_finder/controller/compass_controller.dart';
 import 'package:qibla_finder/controller/home_controller.dart';
+import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/util/dimensions.dart';
 import 'package:qibla_finder/util/styles.dart';
 import 'package:qibla_finder/view/base/custom_button.dart';
+import 'package:qibla_finder/view/base/custom_snackbar.dart';
 import 'package:qibla_finder/view/screen/dashboard/dashboard_screen.dart';
 import 'package:qibla_finder/view/screen/home/widgets/KhudbaWidgetList.dart';
 import 'package:qibla_finder/view/screen/home/widgets/OurServiceWidgetList.dart';
@@ -15,6 +17,7 @@ import 'package:qibla_finder/view/screen/home/widgets/donation_widget.dart';
 import 'package:qibla_finder/view/screen/home/widgets/prayer_time_widget.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
+import '../../../util/InternetCheck.dart';
 import '../drawer/drawer.dart';
 
 
@@ -34,11 +37,16 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   void initState() {
     // TODO: implement initState
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
-    Get.find<CompassController>().checkPermission();
     Get.find<HomeController>().getSlider();
     Get.find<HomeController>().getKhutbaList();
     Get.find<HomeController>().getServiceList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<CompassController>().checkPermission();
+      Get.find<PrayerController>().getPrayerTime(false);
+
+    });
+    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
+
   }
 
   @override
@@ -73,7 +81,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         backgroundColor: Colors.transparent,
         body: RefreshIndicator(
             onRefresh: () async {
-              //await _loadData(true);
+    if(await InternetCheck.checkUserConnection()){
+      print("yes");
+      Get.find<CompassController>().checkPermission();
+      Get.find<PrayerController>().getPrayerTime(true);
+    }else{
+      showCustomSnackBar("Connect your Internet",isError: false);
+    }
+
             },
             child: GetBuilder<HomeController>(
 
@@ -137,11 +152,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                   children: [
                                     BannerView(homeController: controller,),
                                    // SizedBox(height: 10,),
-                                    Column(
-                                      children: [
-                                        PrayerTimeSliderWidget()
-                                      ],
-                                    ),
+                                    PrayerTimeSliderWidget(),
                                     SizedBox(height: 10,),
 
                                     GetBuilder<CompassController>(
@@ -152,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text("Qibla Direction",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge),),
+                                              Text("Qibla Direction",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge,),),
                                               SizedBox(height: 10,),
                                               Container(
                                                 decoration: BoxDecoration(

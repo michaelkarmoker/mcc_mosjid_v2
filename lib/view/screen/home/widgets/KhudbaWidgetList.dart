@@ -15,7 +15,7 @@ class KhudbaWidgetList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.height / 4,
+      height: Get.height / 3.5,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -55,7 +55,7 @@ class KhudbaWidgetList extends StatelessWidget {
                           child: Stack(
                             children: [
                               Container(
-                                color: Colors.black87.withOpacity(0.5),
+                                color: Colors.black87.withOpacity(0.4),
                                 child: Center(
 
                                   child: Icon(Icons.play_circle, size: 50,

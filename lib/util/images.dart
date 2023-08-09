@@ -36,7 +36,8 @@ class Images {
 
 
   static const String about = 'assets/icon/about_us.png';
-  static const String logout = 'assets/icon/logout.png';
+  static const String logout = 'assets/icon/log_out.png';
+  static const String login = 'assets/icon/login.png';
   static const String profile = 'assets/icon/user.png';
   static const String notification = 'assets/icon/bell.png';
   static const String person = 'assets/icon/user.png';

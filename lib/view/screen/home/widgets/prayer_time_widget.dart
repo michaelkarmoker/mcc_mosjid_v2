@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/util/dimensions.dart';
 import 'package:qibla_finder/view/screen/prayer_time_screen/prayer_time_screen.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 import '../../../../util/styles.dart';
 
@@ -12,52 +14,112 @@ class PrayerTimeSliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
+    return GetBuilder<PrayerController>(
 
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-
-              Text("Salah Timings",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge),),
-              InkWell(
-                  onTap: (){
-                    Get.to(PrayerTimeScreen());
-                  },
-                  child: button(isRight: true))
-            ],
-          ),
-        ),
-        SizedBox(height: 15,),
-        Container(
-          height: 150,
-          padding: EdgeInsets.only(left: 10),
-
-
-          child:  SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
+      builder: (controller) {
+        return Column(
+          children: [
+            controller.prayerTimeList.length>0?Column(
               children: [
 
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0,right: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
 
-                timeBox(icon: 'assets/prayer_icon/fajr.png',title: "Fajr",adhanTime: '03:17 AM', time: '03:27 AM',),
+                      Text("Salah Timings",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge),),
+                      InkWell(
+                          onTap: (){
+                            Get.to(PrayerTimeScreen());
+                          },
+                          child: button(isRight: true))
+                    ],
+                  ),
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  height: Get.height/4.6,
 
-                timeBox(icon: 'assets/prayer_icon/sunrise.png',title: "Sunrise",adhanTime: '04:50 AM', time: '05:04 AM'),
 
-                timeBox(icon: 'assets/prayer_icon/dhuhr.png',title: "Dhuhr",adhanTime: '12:10 PM', time: '12:24 PM'),
 
-                timeBox(icon: 'assets/prayer_icon/asar.png',title: "Asar",adhanTime: '04:10 PM', time: '04:24 PM'),
+                  child:  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: BouncingScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Row(
+                        children: [
 
-                timeBox(icon: 'assets/prayer_icon/magrib.png',title: "Magrib",adhanTime: '07:30 PM', time: '07:43 PM'),
 
-                timeBox(icon: 'assets/prayer_icon/Isha.png',title: "Isha", adhanTime: '09:5 PM',time: '09:20 PM'),
+                          timeBox(icon: 'assets/prayer_icon/fajr.png',title: "${controller.prayerTimeList[0].prayerName}",adhanTime: '${controller.prayerTimeList[0].azanTime}', time: '${controller.prayerTimeList[0].prayerTime}',),
+
+                          //timeBox(icon: 'assets/prayer_icon/sunrise.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
+                          timeBox(icon: 'assets/prayer_icon/dhuhr.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
+
+                          timeBox(icon: 'assets/prayer_icon/asar.png',title: "${controller.prayerTimeList[2].prayerName}",adhanTime: '${controller.prayerTimeList[2].azanTime}', time: '${controller.prayerTimeList[2].prayerTime}'),
+
+                          timeBox(icon: 'assets/prayer_icon/magrib.png',title: "${controller.prayerTimeList[3].prayerName}",adhanTime: '${controller.prayerTimeList[3].azanTime}', time: '${controller.prayerTimeList[3].prayerTime}'),
+
+                          timeBox(icon: 'assets/prayer_icon/Isha.png',title: "${controller.prayerTimeList[4].prayerName}",adhanTime: '${controller.prayerTimeList[4].azanTime}', time: '${controller.prayerTimeList[4].prayerTime}'),
+
+                          timeBox(icon: 'assets/prayer_icon/jummah.png',title: "${controller.prayerTimeList[5].prayerName}", adhanTime: '${controller.prayerTimeList[5].azanTime}',time: '${controller.prayerTimeList[5].prayerTime}'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
-            ),
-          ),
-        ),
-      ],
+            ): Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Shimmer(
+                  color: Colors.black12,
+                  child: Container(
+                    decoration: BoxDecoration(
+
+                        borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.all(Radius.circular(10))
+                          ),
+
+                          width: Get.width,
+                          height: 30,
+                        ),
+                        SizedBox(height: 15,),
+                        Container(
+                          height: Get.height/4.6,
+                          child: ListView.builder(
+                            itemCount: 3,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context,index){
+                              return Container(
+
+                                margin: EdgeInsets.only(right: 10),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.all(Radius.circular(10))
+                              ),
+
+                                width: Get.width/3.4,
+                                height: 150,
+                              );
+                            },
+
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+            )
+          ],
+        );
+      }
     );
   }
 
@@ -75,58 +137,81 @@ class PrayerTimeSliderWidget extends StatelessWidget {
 
 
   Widget timeBox({required String title,required String adhanTime,required String time,required String icon}){
-    return Container(
-      width: Get.width/3.3,
-          margin: EdgeInsets.only(right: 10),
+    return Card(
 
-        decoration: BoxDecoration(
-         image: DecorationImage(
-           image: AssetImage(
-             "assets/image/bjk.jpg"
-           ),
-           fit:BoxFit.fitHeight
-         ),
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-        ),
-        child: Container(
+      margin: EdgeInsets.only(left: 12),
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: Container(
+
+        width: Get.width/3.4,
+
+
           decoration: BoxDecoration(
+           image: DecorationImage(
+             image: AssetImage(
+               "assets/prayer_icon/prayer_bg.jpg"
+             ),
+
+             fit:BoxFit.cover
+           ),
             borderRadius: BorderRadius.all(Radius.circular(5)),
-            color: Colors.black.withOpacity(0.4),
           ),
-          padding: EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 8),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Color(0XFF6D8085).withOpacity(0.2),
+            ),
+            padding: EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 8),
 
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 15,),
-              Image.asset(icon,height: 40,),
-              SizedBox(height: 5,),
-              Text("${title}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault,color:Colors.white),),
-              SizedBox(height: 5,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                 Text("Adhan: ", style: robotoMedium.copyWith(fontSize: 12,color: Colors.white)),
-                  Text("${adhanTime}",
-                    textAlign: TextAlign.center,
-                    style: robotoRegular.copyWith(fontSize: 12,color: Colors.white),),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Salah: ", style: robotoMedium.copyWith(fontSize: 12,color: Colors.white)),
-                  Text("${time}",
-                    textAlign: TextAlign.center,
-                    style: robotoRegular.copyWith(fontSize: 12,color: Colors.white),),
-                ],
-              ),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 15,),
+                Image.asset(icon,height: 40,),
+                SizedBox(height: 5,),
+                Text("${title}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault,color:Colors.black87),),
+                SizedBox(height: 5,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    Expanded(
+                        flex: 1,
+                        child: Image.asset("assets/icon/azan_time.png",height: 25,)),
+
+                    Expanded(
+                      flex: 2,
+                      child: Text("${adhanTime}",
+                        textAlign: TextAlign.left,
+                        style: robotoMedium.copyWith(fontSize: 12,color: Colors.green),),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 4,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                        flex:1,child: Image.asset("assets/image/clock.png",height: 23)),
+                    Expanded(
+                      flex: 2,
+                      child: Text("${time}",
+                        textAlign: TextAlign.left,
+                        style: robotoMedium.copyWith(fontSize: 12,color: Colors.green),),
+                    ),
+                  ],
+                ),
 
 
 
-            ],
-          ),
-        )
+
+              ],
+            ),
+          )
+      ),
     );
   }
 }

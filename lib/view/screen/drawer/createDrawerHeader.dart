@@ -32,8 +32,8 @@ Widget createDrawerHeader(BuildContext context) {
            mainAxisAlignment: MainAxisAlignment.center,
            crossAxisAlignment: CrossAxisAlignment.center,
            children: [
-             SizedBox(height:Get.height/8,),
-             Image.asset("assets/image/logo.png",height: 60,width: 80,),
+             SizedBox(height:Get.height/9,),
+             Image.asset("assets/image/logo.png",height: 100,width: 100,),
              SizedBox(height: 10,),
              Text("MCC MASJID SCARBOROUGH",style: robotoMedium.copyWith(color:Colors.amberAccent,fontSize: 14),),
            ],

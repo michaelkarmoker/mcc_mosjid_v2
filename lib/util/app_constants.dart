@@ -8,24 +8,11 @@ class AppConstants {
   static const int APP_VERSION = 1;
 
   //Api End Point
-  static const String BASE_URL = 'https://chat.jobcarebd.net/';
-  static const String STUDENT_IMAGE_URL = 'https://jobcarebd.net/students_img/';
-  static const String ADMIN_IMAGE_URL = 'https://jobcarebd.net/images/';
-  static const String LOGIN_URI = 'api/user/login';
-  static const String REGISTRATION_URI = 'api/user/register';
-  static const String PROFILE_URI = 'api/user/profile';
-  static const String MESSAGE_SENT_URI = 'api/message/create';
-  static const String MESSAGE_LIST_URI = 'api/message/list';
-  static const String NOTICE_LIST_URI = 'api/notice/list';
-  static const String USER_LIST_URI = 'api/users';
-  static const String STUDENT_LIST_URI = 'api/students';
-  static const String STUDENT_SEARCH_LIST_URI = 'api/students/search';
-  static const String STUDENT_BLOCK_URI = 'api/students/block';
-  static const String STUDENT_UNBLOCK_URI = 'api/students/unblock';
-  static const String STUDENT_BLOCK_LIST_URI = 'api/students/blocked';
-  static const String NOTICE_CREATE = 'api/notices/create';
-  static const String NOTICE_UPDATE = 'api/notices/update';
-  static const String NOTICE_DELETE = 'api/notices/delete';
+  static const String BASE_URL = 'https://mccsmasjid.org/';
+
+  static const String LOGIN_URI = 'widget/';
+  static const String PRAYER_TIME_URI = 'get_prayer_time';
+
 
 
 
@@ -37,6 +24,8 @@ class AppConstants {
   // Shared Key
   static const String THEME = 'theme';
   static const String TOKEN = 'token';
+  static const String PRAYER_TIME = 'prayer_time';
+
   static const String USERID = 'user_id';
   static const String REGIONID = 'region_id';
   static const String COUNTRY_CODE = 'country_code';
@@ -69,8 +58,7 @@ class AppConstants {
 
 
 //donation link
-  static const String donationLink = 'https://checkout.stripe.com/c/pay/cs_live_a1d2Q5snAxzCqYBuV0jF69p2ktEiNYvHjWa7Ra7g21tgjCHMRZ7Ajrcs7V#fidkdWxOYHwnPyd1blppbHNgWjA0SG9HMzdBREZGbzA1ZF9daXdPcVRmMGgwMTAwanZrcmZPVEFdMGJ3bH80QktjU3BxUVNRVnJxY3Z3TE1hUE8xQEJ9ME11cTJRVEJ%2FPGNianJsYVNvYXdvNTVXfFxfbGBSZCcpJ3VpbGtuQH11anZgYUxhJz8nNmZ2NTZmNVNGNzxtN3ZiNTU0Jyknd2BjYHd3YHdKd2xibGsnPydtcXF1dj8qKmhmZnZoZHZvbGErandiKid4JSUl';
-
+  static const String donationLink = 'https://checkout.stripe.com/c/pay/cs_live_a12Rkr7saQMU8PV3Ts9owT6BkOE9xttEU9RZfEwPFDMQCh1WtbSaldubjn#fidkdWxOYHwnPyd1blppbHNgWjA0SG9HMzdBREZGbzA1ZF9daXdPcVRmMGgwMTAwanZrcmZPVEFdMGJ3bH80QktjU3BxUVNRVnJxY3Z3TE1hUE8xQEJ9ME11cTJRVEJ%2FPGNianJsYVNvYXdvNTVXfFxfbGBSZCcpJ3VpbGtuQH11anZgYUxhJz8nPXJIPEFIYlBEYjUyPFBMNz09Jyknd2BjYHd3YHdKd2xibGsnPydtcXF1dj8qKmhmZnZoZHZvbGErandiKid4JSUl';
 //internet status code =========
   static const int BADGETWAY = 502;
   static const int SUCCESS = 200;
