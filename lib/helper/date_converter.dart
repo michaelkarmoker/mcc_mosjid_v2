@@ -68,5 +68,52 @@ class DateConverter {
     DateTime inputDate = DateFormat('HH:mm:ss').parse(dateTime);
     return DateFormat('hh:mm a').format(inputDate);
   }
+  static String print24(String time)
+  {
+    // Get hours
+    String returnTime="";
+    int h1 = int.parse(time[1]);
+    int h2 = int.parse(time[0]);
+    int hh = (h2 * 10 + h1 % 10);
 
+    // If time is in "AM"
+    if (time[5] == 'a')
+    {
+      if (hh == 12)
+      {
+        returnTime=returnTime+"00";
+        for (int i = 2; i <= 4; i++){
+          print(time[i]);
+          returnTime=returnTime+time[i];
+        }
+
+      }
+      else
+      {
+        for (int i = 0; i <= 4; i++)
+          returnTime=returnTime+time[i];
+      }
+    }
+
+    // If time is in "PM"
+    else
+    {
+      if (hh == 12)
+      {
+       print("12");
+       returnTime=returnTime+hh.toString();
+        for (int i = 2; i <= 4; i++)
+          returnTime=returnTime+time[i];
+      }
+      else
+      {
+        hh = hh + 12;
+        print(hh);
+        returnTime=returnTime+hh.toString();
+        for (int i = 2; i <= 4; i++)
+          returnTime=returnTime+time[i];
+      }
+    }
+    return returnTime;
+  }
 }

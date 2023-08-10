@@ -50,9 +50,21 @@ class PrayerTimeSliderWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 12.0),
                       child: Row(
                         children: [
+                          timeBox(icon: 'assets/prayer_icon/fajr.png',title: "${controller.prayerTimeList[0].prayerName}",adhanTime: '${controller.prayerTimeList[0].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[0].prayerTime!.replaceRange(5,6," ")}',),
+
+                          //timeBox(icon: 'assets/prayer_icon/sunrise.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
+                          timeBox(icon: 'assets/prayer_icon/dhuhr.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[1].prayerTime!.replaceRange(5,6," ")}'),
+
+                          timeBox(icon: 'assets/prayer_icon/asar.png',title: "${controller.prayerTimeList[2].prayerName}",adhanTime: '${controller.prayerTimeList[2].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[2].prayerTime!.replaceRange(5,6," ")}'),
+
+                          timeBox(icon: 'assets/prayer_icon/magrib.png',title: "${controller.prayerTimeList[3].prayerName}",adhanTime: '${controller.prayerTimeList[3].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[3].prayerTime!.replaceRange(5,6," ")}'),
+
+                          timeBox(icon: 'assets/prayer_icon/Isha.png',title: "${controller.prayerTimeList[4].prayerName}",adhanTime: '${controller.prayerTimeList[4].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[4].prayerTime!.replaceRange(5,6," ")}'),
+
+                          timeBox(icon: 'assets/prayer_icon/jummah.png',title: "${controller.prayerTimeList[5].prayerName}", adhanTime: '${controller.prayerTimeList[5].azanTime!.replaceRange(5,6," ")}',time: '${controller.prayerTimeList[5].prayerTime!.replaceRange(5,6," ")}'),
 
 
-                          timeBox(icon: 'assets/prayer_icon/fajr.png',title: "${controller.prayerTimeList[0].prayerName}",adhanTime: '${controller.prayerTimeList[0].azanTime}', time: '${controller.prayerTimeList[0].prayerTime}',),
+                  /*        timeBox(icon: 'assets/prayer_icon/fajr.png',title: "${controller.prayerTimeList[0].prayerName}",adhanTime: '${controller.prayerTimeList[0].azanTime}', time: '${controller.prayerTimeList[0].prayerTime}',),
 
                           //timeBox(icon: 'assets/prayer_icon/sunrise.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
                           timeBox(icon: 'assets/prayer_icon/dhuhr.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
@@ -64,7 +76,7 @@ class PrayerTimeSliderWidget extends StatelessWidget {
                           timeBox(icon: 'assets/prayer_icon/Isha.png',title: "${controller.prayerTimeList[4].prayerName}",adhanTime: '${controller.prayerTimeList[4].azanTime}', time: '${controller.prayerTimeList[4].prayerTime}'),
 
                           timeBox(icon: 'assets/prayer_icon/jummah.png',title: "${controller.prayerTimeList[5].prayerName}", adhanTime: '${controller.prayerTimeList[5].azanTime}',time: '${controller.prayerTimeList[5].prayerTime}'),
-                        ],
+             */           ],
                       ),
                     ),
                   ),
@@ -184,7 +196,7 @@ class PrayerTimeSliderWidget extends StatelessWidget {
 
                     Expanded(
                       flex: 2,
-                      child: Text("${adhanTime}",
+                      child: Text("${adhanTime.toUpperCase()}",
                         textAlign: TextAlign.left,
                         style: robotoMedium.copyWith(fontSize: 12,color: Colors.green),),
                     ),
@@ -198,7 +210,7 @@ class PrayerTimeSliderWidget extends StatelessWidget {
                         flex:1,child: Image.asset("assets/image/clock.png",height: 23)),
                     Expanded(
                       flex: 2,
-                      child: Text("${time}",
+                      child: Text("${time.toUpperCase()}",
                         textAlign: TextAlign.left,
                         style: robotoMedium.copyWith(fontSize: 12,color: Colors.green),),
                     ),

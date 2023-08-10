@@ -3,22 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:qibla_finder/controller/prayer_controller.dart';
+import 'package:qibla_finder/data/model/response/PrayerTimeResponse.dart';
 import 'package:qibla_finder/helper/date_converter.dart';
 import 'package:qibla_finder/util/dimensions.dart';
 
 import '../../../../util/styles.dart';
+import 'custom_edit_dialog.dart';
 
-class PrayerTimeWidget extends StatefulWidget {
+class PrayerTimeUpdateWidget extends StatefulWidget {
   final String date;
   final PrayerController controller;
 
-   PrayerTimeWidget({super.key, required this.date, required this.controller});
+  PrayerTimeUpdateWidget({super.key, required this.date, required this.controller});
 
   @override
-  State<PrayerTimeWidget> createState() => _PrayerTimeWidgetState();
+  State<PrayerTimeUpdateWidget> createState() => _PrayerTimeWidgetState();
 }
 
-class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
+class _PrayerTimeWidgetState extends State<PrayerTimeUpdateWidget> {
 
 
   @override
@@ -29,20 +31,7 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
         child: Column(
           children: [
 
-          /*  SizedBox(height: 5,),
-            Container(
 
-              padding: EdgeInsets.only(left: 10,right: 10,top: 10),
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                //  button(isRight: false),
-                  Text("${date}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge,color: Colors.white),),
-                //  button(isRight: true),
-                ],
-              ),
-            ),*/
             SizedBox(height: 10,),
             Container(
                 decoration: BoxDecoration(
@@ -52,22 +41,7 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
 
                 child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: title(),
-                ),
-             /*   prayerTimeRow(icon: 'assets/prayer_icon/fajr.png',title: "Fajr",adhanTime: '03:17 AM', time: '03:27 AM',),
-
-                prayerTimeRow(icon: 'assets/prayer_icon/sunrise.png',title: "Sunrise",adhanTime: '04:50 AM', time: '05:04 AM'),
-
-                prayerTimeRow(icon: 'assets/prayer_icon/dhuhr.png',title: "Dhuhr",adhanTime: '12:10 PM', time: '12:24 PM'),
-
-                prayerTimeRow(icon: 'assets/prayer_icon/asar.png',title: "Asar",adhanTime: '04:10 PM', time: '04:24 PM'),
-
-                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "Magrib",adhanTime: '07:30 PM', time: '07:43 PM'),
-
-                prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "Isha", adhanTime: '09:5 PM',time: '09:20 PM'),*/
-
+                
                 prayerTimeRow(icon: 'assets/prayer_icon/fajr.png',title: "${widget.controller.prayerTimeList[0].prayerName}",adhanTime: '${widget.controller.prayerTimeList[0].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[0].prayerTime!.replaceRange(5,6," ")}',),
 
                 //timeBox(icon: 'assets/prayer_icon/sunrise.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
@@ -75,7 +49,7 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
 
                 prayerTimeRow(icon: 'assets/prayer_icon/asar.png',title: "${widget.controller.prayerTimeList[2].prayerName}",adhanTime: '${widget.controller.prayerTimeList[2].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[2].prayerTime!.replaceRange(5,6," ")}'),
 
-                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "${widget.controller.prayerTimeList[3].prayerName}",adhanTime: '${widget.controller.prayerTimeList[3].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[3].prayerTime!.replaceRange(5,6," ")}'),
+                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "${widget.controller.prayerTimeList[3].prayerName}",adhanTime: '${widget.controller.prayerTimeList[3].azanTime!}', time: '${widget.controller.prayerTimeList[3].prayerTime!}'),
 
                 prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "${widget.controller.prayerTimeList[4].prayerName}",adhanTime: '${widget.controller.prayerTimeList[4].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[4].prayerTime!.replaceRange(5,6," ")}'),
 
@@ -136,48 +110,73 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
 
   Widget prayerTimeRow({required String title,required String time,required String adhanTime,required String icon}){
     return Padding(
-      padding: const EdgeInsets.only(left: 3.0,right: 3),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.0),
-        ),
-        color: Colors.white70,
-        elevation: 0,
-        child: Container(
-            padding: EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 8),
-           /* decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-            ),*/
-            child: Row(
+      padding: const EdgeInsets.only(left: 3.0,right: 3,),
+      child: InkWell(
+        onTap: (){
+          Get.dialog(CustomEditDialog(yesBtntap: () {
 
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Row(
-
+          }, salatName:title,prayertime:time , adhantime:adhanTime,));
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          color: Colors.white70,
+          elevation: 0,
+          child: Container(
+              padding: EdgeInsets.only(left: 8,right: 8,top: 10,bottom:10),
+             /* decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),*/
+              child: Column(
+                children: [
+                  Row(
+             crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(icon,height: 30,),
-                      SizedBox(width: 3,),
-                      Text("${title}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall,color: Colors.black54),)
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Name of Salat",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault,color: Colors.black),),
+                            SizedBox(height: 5,),
+                            Text("Azan Time",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault,color: Colors.black),),
+                            SizedBox(height: 5,),
+                            Text("Prayer Time",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault,color: Colors.black),),
+                          ],
+                        ),
+                      ),
+
+                    Expanded(
+                        flex: 3,
+                        child:Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(": ${title}",style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault,color: Colors.black),),
+                        SizedBox(height: 5,),
+                        Text(": ${adhanTime.toUpperCase()}",
+                          textAlign: TextAlign.start,
+                          style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault,color: Colors.black),),
+                        SizedBox(height: 5,),
+                        Text(": ${time.toUpperCase()}",
+                          textAlign: TextAlign.start,
+                          style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault,color: Colors.black),),
+                      ],
+                    )),
+                      Expanded(
+                          flex: 1,
+                          child: Container(
+                            child:Center(
+                              child:  Image.asset("assets/icon/edit.png",height: 30,),
+                            ),
+                          )
+                      ),
                     ],
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
 
-                      child: Text("${adhanTime.toUpperCase()}",
-                        textAlign: TextAlign.center,
-                        style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall,color: Colors.black),)),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text("${time.toUpperCase()}",
-                    textAlign: TextAlign.right,
-                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall,color: Colors.black),),
-                ),
-              ],
-            )
+                ],
+              )
+          ),
         ),
       ),
     );

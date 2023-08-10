@@ -8,10 +8,11 @@ import 'package:qibla_finder/controller/compass_controller.dart';
 import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/helper/date_converter.dart';
 import 'package:qibla_finder/view/screen/prayer_time_screen/widget/prayer_time_widget.dart';
-
+import 'package:flutter/material.dart';
 import '../../../util/dimensions.dart';
 import '../../../util/styles.dart';
 import '../home/widgets/prayer_time_widget.dart';
+import '../prayer_time_update_screen/prayer_time_screen.dart';
 
 class PrayerTimeScreen extends StatefulWidget {
   const PrayerTimeScreen({super.key});
@@ -29,7 +30,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
     HijriCalendar _today = HijriCalendar.now();
     print(_today);
   }
-
+bool isEdit=false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +40,17 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
 
         centerTitle: false,
         title: Container(child: Text("Salah Timings",style: appBarTextStyle.copyWith(fontSize: Dimensions.fontSizeExtraLarge),)),
+        actionsIconTheme: IconThemeData(color:Theme.of(context).primaryColor),
         actions: [
           Get.find<AuthController>().isLoggedIn()?InkWell(
             onTap: (){
-
+              Get.to(PrayerTimeUpdateScreen());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                 Image.asset("assets/icon/edit.png",width: 20,),
+                 Image.asset("assets/icon/edit2.png",width: 20,color: Colors.white,),
                   SizedBox(width: 10,)
                 ],
               ),
