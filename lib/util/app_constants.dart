@@ -10,8 +10,9 @@ class AppConstants {
   //Api End Point
   static const String BASE_URL = 'https://mccsmasjid.org/';
 
-  static const String LOGIN_URI = 'widget/';
-  static const String PRAYER_TIME_URI = 'get_prayer_time';
+  static const String END_URI = 'widget?';
+  static const String GET_PRAYER_TIME_URI = 'get_prayer_time';
+  static const String UPDATE_PRAYER_TIME_URI = 'update_prayer_time';
 
 
 
@@ -58,7 +59,9 @@ class AppConstants {
 
 
 //donation link
-  static const String donationLink = 'https://checkout.stripe.com/c/pay/cs_live_a12Rkr7saQMU8PV3Ts9owT6BkOE9xttEU9RZfEwPFDMQCh1WtbSaldubjn#fidkdWxOYHwnPyd1blppbHNgWjA0SG9HMzdBREZGbzA1ZF9daXdPcVRmMGgwMTAwanZrcmZPVEFdMGJ3bH80QktjU3BxUVNRVnJxY3Z3TE1hUE8xQEJ9ME11cTJRVEJ%2FPGNianJsYVNvYXdvNTVXfFxfbGBSZCcpJ3VpbGtuQH11anZgYUxhJz8nPXJIPEFIYlBEYjUyPFBMNz09Jyknd2BjYHd3YHdKd2xibGsnPydtcXF1dj8qKmhmZnZoZHZvbGErandiKid4JSUl';
+  static const String donationLink = 'https://mccsmasjid.org/donateM.html';
+  static const String volantiar = 'https://mccsmasjid.org/volunteerM.html';
+  static const String contactList = 'https://mccsmasjid.org/contactUSM.html';
 //internet status code =========
   static const int BADGETWAY = 502;
   static const int SUCCESS = 200;

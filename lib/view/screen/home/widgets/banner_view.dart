@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qibla_finder/view/base/custom_button.dart';
 import 'package:qibla_finder/view/base/shakeWidget.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
+
 
 import '../../../../controller/home_controller.dart';
 import '../../../../util/app_constants.dart';
@@ -127,8 +128,9 @@ class BannerView extends StatelessWidget {
             }).toList(),
           ),
         ],
-      ) : Shimmer(
-        duration: Duration(seconds: 2),
+      ) : Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
         enabled: homeController.sliders == null,
         child: Container(margin: EdgeInsets.symmetric(horizontal: 10), decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),

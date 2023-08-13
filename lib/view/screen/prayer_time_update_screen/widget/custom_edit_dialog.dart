@@ -1,3 +1,5 @@
+import 'package:qibla_finder/controller/prayer_controller.dart';
+import 'package:qibla_finder/data/model/request/PrayerTimeUpdateRequest.dart';
 import 'package:qibla_finder/util/dimensions.dart';
 import 'package:qibla_finder/util/images.dart';
 import 'package:qibla_finder/util/styles.dart';
@@ -6,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../../../data/model/response/PrayerTimeResponse.dart';
 import '../../../../helper/date_converter.dart';
+import '../../../base/custom_text_from_field_with_title.dart';
 import '../../../base/my_text_field.dart';
 
 
@@ -13,11 +16,12 @@ class CustomEditDialog extends StatefulWidget {
 
 
   final String salatName;
+  final String id;
   final String prayertime;
   final String adhantime;
   final bool isError;
   final Function() yesBtntap;
-   CustomEditDialog({Key? key,required this.yesBtntap, this.isError=false, required this.salatName, required this.prayertime, required this.adhantime,}) : super(key: key);
+   CustomEditDialog({Key? key,required this.yesBtntap, this.isError=false, required this.salatName, required this.prayertime, required this.adhantime, required this.id,}) : super(key: key);
 
   @override
   State<CustomEditDialog> createState() => _CustomEditDialogState();
@@ -30,7 +34,7 @@ class _CustomEditDialogState extends State<CustomEditDialog> {
   void _selectTime(String time,bool isAdhanTime) async {
     // _time=TimeOfDay(hour:time.substring(0,1), minute: minute)
     String timess=time.replaceRange(5,6,"");
-    String a=DateConverter.print24(timess);
+    String a=DateConverter.twelveTo24(timess);
     _time=TimeOfDay(hour:int.parse(a.substring(0,2)), minute:int.parse(a.substring(3,5)));
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
@@ -63,7 +67,7 @@ class _CustomEditDialogState extends State<CustomEditDialog> {
   TextEditingController prayerCtr=new TextEditingController();
 
   FocusNode prayerFcs=new FocusNode();
-
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -91,52 +95,80 @@ class _CustomEditDialogState extends State<CustomEditDialog> {
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: [
-                  MyTextField(
-                    isEnabled: false,
-                    controller: salatCtr,
-                    focusNode: salatFcs,
-                    hintText: "Enter Salat Name",
-                    title: 'Name of Salat',),
-                  SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      Expanded(child:adhanCtr.text.contains(":")?InkWell(
-                        onTap: (){
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    MyTextField(
+                      isEnabled: false,
+                      controller: salatCtr,
+                      focusNode: salatFcs,
+                      hintText: "Enter Salat Name",
+                      title: 'Name of Salat',),
+                    SizedBox(height: 10,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child:adhanCtr.text.contains(":")?InkWell(
+                          onTap: (){
 
-                          _selectTime(adhanCtr.text,true);
-                        },
-                        child: MyTextField(
-                          isEnabled: false,
+                            _selectTime(adhanCtr.text,true);
+                          },
+                          child: CustomTextFromFieldWithTitle(
+                            isEnabled: false,
+                            controller: adhanCtr,
+                            validator: (val) {
+                              if (val!.isEmpty){
+                                return 'Enter Azan Time';
+                              }
+                            },
+                            hintText: "Enter Azan Time",
+                            focusNode: adhanFcs, title: 'Azan Time',
+                            nextFocus: prayerFcs,),
+                        ):CustomTextFromFieldWithTitle(
+                          isEnabled: true,
                           controller: adhanCtr,
-
+                          validator: (val) {
+                            if (val!.isEmpty){
+                              return 'Enter Azan Time';
+                            }
+                          },
                           hintText: "Enter Azan Time",
-                          focusNode: adhanFcs, title: 'Azan Time',),
-                      ):MyTextField(
-                        isEnabled: true,
-                        controller: adhanCtr,
-
-                        hintText: "Enter Azan Time",
-                        focusNode: adhanFcs, title: 'Azan Time',)),
-                      SizedBox(width: 6,),
-                      Expanded(child: prayerCtr.text.contains(":")?InkWell(
-                        onTap: (){
-                          _selectTime(prayerCtr.text,false);
-                        },
-                        child: MyTextField(
-                          isEnabled: false,
+                          focusNode: adhanFcs, title: 'Azan Time',
+                          nextFocus: prayerFcs,
+                       )),
+                        SizedBox(width: 6,),
+                        Expanded(child: prayerCtr.text.contains(":")?InkWell(
+                          onTap: (){
+                            _selectTime(prayerCtr.text,false);
+                          },
+                          child: CustomTextFromFieldWithTitle(
+                            isEnabled: false,
+                            validator: (val) {
+                              if (val!.isEmpty){
+                                return 'Enter Salat Time';
+                              }
+                            },
+                            controller: prayerCtr,
+                            hintText: "Enter Salat Time",
+                            focusNode: prayerFcs, title: 'Salat Time',
+                            nextFocus: null,),
+                        ):CustomTextFromFieldWithTitle(
+                          isEnabled: true,
+                          validator: (val) {
+                            if (val!.isEmpty){
+                              return 'Enter Salat Time';
+                            }
+                          },
                           controller: prayerCtr,
                           hintText: "Enter Salat Time",
-                          focusNode: prayerFcs, title: 'Salat Time',),
-                      ):MyTextField(
-                        isEnabled: true,
-                        controller: prayerCtr,
-                        hintText: "Enter Salat Time",
-                        focusNode: prayerFcs, title: 'Salat Time',),),
-                    ],
-                  ),
-                ],
+                          focusNode: prayerFcs, title: 'Salat Time',
+                          nextFocus: null,),),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
 
@@ -175,7 +207,42 @@ class _CustomEditDialogState extends State<CustomEditDialog> {
                 Expanded(
                   flex: 1,
                   child: InkWell(
-                    onTap: widget.yesBtntap,
+                    onTap: (){
+
+                      if(_formKey.currentState!.validate()){
+
+                          List<PrayerTime>? prayerTime=[];
+                          if(adhanCtr.text.contains(":")){
+                            String azanTimeHr=DateConverter.twelveTo24(adhanCtr.text).substring(0,2);
+                            String azanTimeMin=DateConverter.twelveTo24(adhanCtr.text).substring(3,5);
+                            String pryaerTimeHr=DateConverter.twelveTo24(prayerCtr.text).substring(0,2);
+                            String pryaerTimeMin=DateConverter.twelveTo24(prayerCtr.text).substring(3,5);
+                            prayerTime.add(new PrayerTime(prayerId:widget.id,prayerName: widget.salatName,
+                                azanTimeHr:azanTimeHr,
+                                azanTimeMin:azanTimeMin,
+                                prayerTimeHr: pryaerTimeHr,
+                                prayerTimeMin: pryaerTimeMin
+
+                            ));
+                          }else{
+                            prayerTime.add(new PrayerTime(prayerId:widget.id,prayerName: widget.salatName,
+                                azanTimeHr:adhanCtr.text,
+                                azanTimeMin:"",
+                                prayerTimeHr: prayerCtr.text,
+                                prayerTimeMin: ""
+
+                            ));
+                          }
+
+                          PrayerTimeUpdateRequest data=new PrayerTimeUpdateRequest(prayerTime: prayerTime);
+                          Get.back();
+                          Get.find<PrayerController>().updatePrayerTime(data);
+
+                      }
+
+
+
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border(

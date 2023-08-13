@@ -68,7 +68,7 @@ class DateConverter {
     DateTime inputDate = DateFormat('HH:mm:ss').parse(dateTime);
     return DateFormat('hh:mm a').format(inputDate);
   }
-  static String print24(String time)
+  static String twelveTo24(String time)
   {
     // Get hours
     String returnTime="";

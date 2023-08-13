@@ -17,6 +17,7 @@ import '../../util/app_constants.dart';
 import '../api/api_client.dart';
 import '../model/body/login_body.dart';
 import '../model/body/signup_body.dart';
+import '../model/request/PrayerTimeUpdateRequest.dart';
 
 class PrayerRepo {
   final ApiClient apiClient;
@@ -34,8 +35,8 @@ class PrayerRepo {
 
    // return await apiClient.postData(AppConstants.LOGIN_URI, {"jsonData":jsonEncode(loginBody.toJson())});
 
-    return await apiClient.getData(AppConstants.LOGIN_URI, query: {
-      "event":AppConstants.PRAYER_TIME_URI,
+    return await apiClient.getData(AppConstants.END_URI, query: {
+      "event":AppConstants.GET_PRAYER_TIME_URI,
       "key":base64ASK
     });
   }
@@ -45,6 +46,18 @@ class PrayerRepo {
 
     String user = jsonEncode(data);
     return await sharedPreferences.setString(AppConstants.PRAYER_TIME, user);
+  }
+
+
+
+  Future<Response> updatePrayerTime(PrayerTimeUpdateRequest data) async {
+
+    String appToken=Get.find<AuthController>().getUserToken();
+
+    return await apiClient.postData(AppConstants.END_URI+"event=${AppConstants.UPDATE_PRAYER_TIME_URI}&apps_token=${appToken}",data.toJson() /*query: {
+      "event":AppConstants.UPDATE_PRAYER_TIME_URI,
+      "apps_token":"TnpBNE1qQXlNdz09Lk1qQXlNeTB3T0Mwd09RPT0"
+    }*/);
   }
 
   String? getPrayerOfflinePrayerTime() {

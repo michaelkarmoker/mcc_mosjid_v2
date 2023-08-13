@@ -3,6 +3,7 @@ import 'dart:io';
 
 
 import 'package:qibla_finder/data/model/body/login_body.dart';
+import 'package:qibla_finder/data/model/request/PrayerTimeUpdateRequest.dart';
 import 'package:qibla_finder/data/model/response/PrayerTimeResponse.dart';
 import 'package:qibla_finder/data/repository/prayer_repo.dart';
 import 'package:qibla_finder/view/base/custom_snackbar.dart';
@@ -44,7 +45,7 @@ class PrayerController extends GetxController implements GetxService {
 
 
     }else{
-
+      prayerTimeList=[];
       if(await InternetCheck.checkUserConnection()){
         Response response = await prayerRepo.getPrayertime();
         if (response.statusCode == 200) {
@@ -89,5 +90,45 @@ class PrayerController extends GetxController implements GetxService {
     update();
   }
 
+  Future<void> updatePrayerTime(PrayerTimeUpdateRequest data) async {
+    _isLoading = true;
+    update();
 
+
+
+
+      if(await InternetCheck.checkUserConnection()){
+        Response response = await prayerRepo.updatePrayerTime(data);
+        if (response.statusCode == 200) {
+
+
+          PrayerTimeResponse prayerTimeResponse=new PrayerTimeResponse.fromJson(jsonDecode(response.body));
+
+          if(prayerTimeResponse.statusCode==200){
+
+            showCustomSnackBar(jsonDecode(response.body)["successMsg"],isError: false);
+            getPrayerTime(true);
+          }else{
+            showCustomSnackBar("Update failed",isError: true);
+          }
+
+        } else {
+
+          showCustomSnackBar("Something wrong with internet");
+
+        }
+      }else{
+       showCustomSnackBar("Please Connect Internet and try again");
+
+      }
+
+
+
+
+
+
+
+    _isLoading = false;
+    update();
+  }
 }

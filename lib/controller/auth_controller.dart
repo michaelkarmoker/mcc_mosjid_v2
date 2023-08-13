@@ -50,7 +50,7 @@ class AuthController extends GetxController implements GetxService {
     passwordController.text = password;
   }
 
-  Future<void> login(LoginBody loginBody) async {
+  Future<void> login(LoginRequestBody loginBody) async {
     _isLoading = true;
     update();
 
@@ -63,7 +63,7 @@ class AuthController extends GetxController implements GetxService {
 
       if(data["statusCode"]==200){
         if(_isActiveRememberMe){
-          await authRepo.saveUserNameAndPassword( loginBody.password!);
+          await authRepo.saveUserNameAndPassword(loginBody!.loginData![0].usersEmail!,loginBody.loginData![0].usersPassword!);
         }else{
           await authRepo.clearUserNumberAndPassword();
         }
@@ -94,17 +94,19 @@ class AuthController extends GetxController implements GetxService {
 
 
   void loginVerification() async {
-   /* String _email = emailController.text.trim();*/
+    String _email = emailController.text.trim();
     String _password = passwordController.text.trim();
 
-      /*if (_email.isEmpty) {
+      if (_email.isEmpty) {
         showCustomSnackBar('Enter username');
-      } else*/ if (_password.isEmpty) {
+      } else if (_password.isEmpty) {
         showCustomSnackBar('Enter Your Auth ID');
       } else if (_password.length < 5) {
         showCustomSnackBar('The Auth ID must be at least 6 Characters');
       } else {
-        login(LoginBody(password: _password));
+        List<LoginData> loginList=[];
+        loginList.add(new LoginData(usersPassword: _password,usersEmail: _email));
+        login(LoginRequestBody(loginData: loginList));
       }
 
   }
@@ -131,9 +133,10 @@ class AuthController extends GetxController implements GetxService {
   }
   void saveUserNameAndPassword(
 
+    String email,
     String password,
   ) {
-    authRepo.saveUserNameAndPassword(password);
+    authRepo.saveUserNameAndPassword(email,password);
   }
 
   String getUserName() {

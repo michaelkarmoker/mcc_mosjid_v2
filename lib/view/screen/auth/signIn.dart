@@ -140,7 +140,7 @@ class _signInState extends State<SignIn> {
 
                                             Column(
                                               children: [
-                                               /* CustomTextField(
+                                                CustomTextField(
 
                                                   hintText: "Email",
                                                   controller: authController.emailController,
@@ -150,10 +150,10 @@ class _signInState extends State<SignIn> {
                                                   capitalization: TextCapitalization.words,
                                                   divider: false, onSubmit: (){}, prefixIcon:'assets/icon/user.png',
 
-                                                ),*/
+                                                ),
                                                 CustomTextField(
 
-                                                  hintText: "Auth ID",
+                                                  hintText: "Password",
                                                   controller: authController.passwordController,
                                                   focusNode: _passwordFocus,
                                                   inputAction: TextInputAction.done,

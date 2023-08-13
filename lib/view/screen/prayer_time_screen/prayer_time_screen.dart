@@ -9,10 +9,11 @@ import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/helper/date_converter.dart';
 import 'package:qibla_finder/view/screen/prayer_time_screen/widget/prayer_time_widget.dart';
 import 'package:flutter/material.dart';
+
 import '../../../util/dimensions.dart';
 import '../../../util/styles.dart';
 import '../home/widgets/prayer_time_widget.dart';
-import '../prayer_time_update_screen/prayer_time_screen.dart';
+import '../prayer_time_update_screen/prayer_time_update_screen.dart';
 
 class PrayerTimeScreen extends StatefulWidget {
   const PrayerTimeScreen({super.key});
@@ -154,7 +155,7 @@ bool isEdit=false;
                      ],
                    ) ,
                  ),
-                  PrayerTimeWidget(date: HijriCalendar.now().toFormat("MMMM dd yyyy"), controller: controller,)
+                  controller.prayerTimeList.length>0?PrayerTimeWidget(date: HijriCalendar.now().toFormat("MMMM dd yyyy"), controller: controller,):SizedBox()
                  ],
               ),
             ),

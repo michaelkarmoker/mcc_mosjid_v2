@@ -5,7 +5,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:qibla_finder/controller/prayer_controller.dart';
 import 'package:qibla_finder/util/dimensions.dart';
 import 'package:qibla_finder/view/screen/prayer_time_screen/prayer_time_screen.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
+
 
 import '../../../../util/styles.dart';
 
@@ -57,7 +58,7 @@ class PrayerTimeSliderWidget extends StatelessWidget {
 
                           timeBox(icon: 'assets/prayer_icon/asar.png',title: "${controller.prayerTimeList[2].prayerName}",adhanTime: '${controller.prayerTimeList[2].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[2].prayerTime!.replaceRange(5,6," ")}'),
 
-                          timeBox(icon: 'assets/prayer_icon/magrib.png',title: "${controller.prayerTimeList[3].prayerName}",adhanTime: '${controller.prayerTimeList[3].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[3].prayerTime!.replaceRange(5,6," ")}'),
+                          timeBox(icon: 'assets/prayer_icon/magrib.png',title: "${controller.prayerTimeList[3].prayerName}",adhanTime: '${controller.prayerTimeList[3].azanTime!}', time: '${controller.prayerTimeList[3].prayerTime!}'),
 
                           timeBox(icon: 'assets/prayer_icon/Isha.png',title: "${controller.prayerTimeList[4].prayerName}",adhanTime: '${controller.prayerTimeList[4].azanTime!.replaceRange(5,6," ")}', time: '${controller.prayerTimeList[4].prayerTime!.replaceRange(5,6," ")}'),
 
@@ -84,8 +85,10 @@ class PrayerTimeSliderWidget extends StatelessWidget {
               ],
             ): Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Shimmer(
-                  color: Colors.black12,
+              child: Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+
                   child: Container(
                     decoration: BoxDecoration(
 

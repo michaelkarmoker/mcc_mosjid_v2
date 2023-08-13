@@ -75,7 +75,7 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
 
                 prayerTimeRow(icon: 'assets/prayer_icon/asar.png',title: "${widget.controller.prayerTimeList[2].prayerName}",adhanTime: '${widget.controller.prayerTimeList[2].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[2].prayerTime!.replaceRange(5,6," ")}'),
 
-                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "${widget.controller.prayerTimeList[3].prayerName}",adhanTime: '${widget.controller.prayerTimeList[3].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[3].prayerTime!.replaceRange(5,6," ")}'),
+                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "${widget.controller.prayerTimeList[3].prayerName}",adhanTime: '${widget.controller.prayerTimeList[3].azanTime!}', time: '${widget.controller.prayerTimeList[3].prayerTime!}'),
 
                 prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "${widget.controller.prayerTimeList[4].prayerName}",adhanTime: '${widget.controller.prayerTimeList[4].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[4].prayerTime!.replaceRange(5,6," ")}'),
 

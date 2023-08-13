@@ -42,18 +42,18 @@ class _PrayerTimeWidgetState extends State<PrayerTimeUpdateWidget> {
                 child: Column(
               children: [
                 
-                prayerTimeRow(icon: 'assets/prayer_icon/fajr.png',title: "${widget.controller.prayerTimeList[0].prayerName}",adhanTime: '${widget.controller.prayerTimeList[0].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[0].prayerTime!.replaceRange(5,6," ")}',),
+                prayerTimeRow(id:"${widget.controller.prayerTimeList[0].prayerId}",icon: 'assets/prayer_icon/fajr.png',title: "${widget.controller.prayerTimeList[0].prayerName}",adhanTime: '${widget.controller.prayerTimeList[0].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[0].prayerTime!.replaceRange(5,6," ")}',),
 
                 //timeBox(icon: 'assets/prayer_icon/sunrise.png',title: "${controller.prayerTimeList[1].prayerName}",adhanTime: '${controller.prayerTimeList[1].azanTime}', time: '${controller.prayerTimeList[1].prayerTime}'),
-                prayerTimeRow(icon: 'assets/prayer_icon/dhuhr.png',title: "${widget.controller.prayerTimeList[1].prayerName}",adhanTime: '${widget.controller.prayerTimeList[1].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[1].prayerTime!.replaceRange(5,6," ")}'),
+                prayerTimeRow(id:"${widget.controller.prayerTimeList[1].prayerId}",icon: 'assets/prayer_icon/dhuhr.png',title: "${widget.controller.prayerTimeList[1].prayerName}",adhanTime: '${widget.controller.prayerTimeList[1].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[1].prayerTime!.replaceRange(5,6," ")}'),
 
-                prayerTimeRow(icon: 'assets/prayer_icon/asar.png',title: "${widget.controller.prayerTimeList[2].prayerName}",adhanTime: '${widget.controller.prayerTimeList[2].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[2].prayerTime!.replaceRange(5,6," ")}'),
+                prayerTimeRow(id:"${widget.controller.prayerTimeList[2].prayerId}",icon: 'assets/prayer_icon/asar.png',title: "${widget.controller.prayerTimeList[2].prayerName}",adhanTime: '${widget.controller.prayerTimeList[2].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[2].prayerTime!.replaceRange(5,6," ")}'),
 
-                prayerTimeRow(icon: 'assets/prayer_icon/magrib.png',title: "${widget.controller.prayerTimeList[3].prayerName}",adhanTime: '${widget.controller.prayerTimeList[3].azanTime!}', time: '${widget.controller.prayerTimeList[3].prayerTime!}'),
+                prayerTimeRow(id:"${widget.controller.prayerTimeList[3].prayerId}",icon: 'assets/prayer_icon/magrib.png',title: "${widget.controller.prayerTimeList[3].prayerName}",adhanTime: '${widget.controller.prayerTimeList[3].azanTime!}', time: '${widget.controller.prayerTimeList[3].prayerTime!}'),
 
-                prayerTimeRow(icon: 'assets/prayer_icon/Isha.png',title: "${widget.controller.prayerTimeList[4].prayerName}",adhanTime: '${widget.controller.prayerTimeList[4].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[4].prayerTime!.replaceRange(5,6," ")}'),
+                prayerTimeRow(id:"${widget.controller.prayerTimeList[4].prayerId}",icon: 'assets/prayer_icon/Isha.png',title: "${widget.controller.prayerTimeList[4].prayerName}",adhanTime: '${widget.controller.prayerTimeList[4].azanTime!.replaceRange(5,6," ")}', time: '${widget.controller.prayerTimeList[4].prayerTime!.replaceRange(5,6," ")}'),
 
-                prayerTimeRow(icon: 'assets/prayer_icon/jummah.png',title: "${widget.controller.prayerTimeList[5].prayerName}", adhanTime: '${widget.controller.prayerTimeList[5].azanTime!.replaceRange(5,6," ")}',time: '${widget.controller.prayerTimeList[5].prayerTime!.replaceRange(5,6," ")}'),
+                prayerTimeRow(id:"${widget.controller.prayerTimeList[5].prayerId}",icon: 'assets/prayer_icon/jummah.png',title: "${widget.controller.prayerTimeList[5].prayerName}", adhanTime: '${widget.controller.prayerTimeList[5].azanTime!.replaceRange(5,6," ")}',time: '${widget.controller.prayerTimeList[5].prayerTime!.replaceRange(5,6," ")}'),
               ],
             ))
           ],
@@ -108,14 +108,15 @@ class _PrayerTimeWidgetState extends State<PrayerTimeUpdateWidget> {
     );
   }
 
-  Widget prayerTimeRow({required String title,required String time,required String adhanTime,required String icon}){
+  Widget prayerTimeRow({required String id,required String title,required String time,required String adhanTime,required String icon}){
     return Padding(
       padding: const EdgeInsets.only(left: 3.0,right: 3,),
       child: InkWell(
         onTap: (){
           Get.dialog(CustomEditDialog(yesBtntap: () {
 
-          }, salatName:title,prayertime:time , adhantime:adhanTime,));
+
+          }, salatName:title,prayertime:time , adhantime:adhanTime, id: id,));
         },
         child: Card(
           shape: RoundedRectangleBorder(

@@ -15,7 +15,8 @@ import 'package:qibla_finder/view/screen/home/widgets/banner_view.dart';
 import 'package:qibla_finder/view/screen/home/widgets/compass_widget.dart';
 import 'package:qibla_finder/view/screen/home/widgets/donation_widget.dart';
 import 'package:qibla_finder/view/screen/home/widgets/prayer_time_widget.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:shimmer/shimmer.dart';
+
 
 import '../../../util/InternetCheck.dart';
 import '../drawer/drawer.dart';
@@ -204,8 +205,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                         ):
                                         Padding(
                                           padding: const EdgeInsets.all(12.0),
-                                          child: Shimmer(
-                                              color: Colors.black12,
+                                          child: Shimmer.fromColors(
+                                              baseColor: Colors.grey.shade300,
+                                              highlightColor: Colors.grey.shade100,
                                               child: Container(
                                                 decoration: BoxDecoration(
 

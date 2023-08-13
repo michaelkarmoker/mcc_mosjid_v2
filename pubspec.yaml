@@ -28,7 +28,8 @@ dependencies:
   permission_handler: ^10.2.0
   geodart: ^0.2.8
   geocoding: ^2.1.0
-  shimmer_animation: ^2.0.0
+  #shimmer_animation: ^2.0.0
+  shimmer: ^3.0.0
   flutter_inappwebview: ^5.7.2+3
   url_launcher: ^6.1.10
   hijri: ^3.0.0

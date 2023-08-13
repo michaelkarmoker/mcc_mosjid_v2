@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qibla_finder/controller/home_controller.dart';
 import 'package:qibla_finder/util/app_constants.dart';
+import 'package:qibla_finder/view/screen/prayer_time_update_screen/prayer_time_update_screen.dart';
 import 'package:qibla_finder/view/screen/webViewPage/web_view_screen.dart';
 
 
@@ -59,7 +60,7 @@ class _DrawerState extends State<DrawerLayout> {
                       text: 'Become our volunteer',
                       onTap: () =>{
                         Navigator.of(context).pop(),
-                        Get.to(BecomeVolunteerScreen())
+                        Get.to(WebViewPage(url: AppConstants.volantiar, title: 'Become our volunteer',))
                       }
 
                   ),
@@ -76,7 +77,8 @@ class _DrawerState extends State<DrawerLayout> {
                       icon: Images.contactUs,
                       text: 'Contact Us',
                       onTap: () =>{
-
+                        Navigator.of(context).pop(),
+                        Get.to(WebViewPage(url: AppConstants.contactList, title: 'Contact Us',))
 
                       }
 
@@ -90,7 +92,15 @@ class _DrawerState extends State<DrawerLayout> {
                       }
 
                   ),
+                  Get.find<AuthController>().isLoggedIn()?createDrawerBodyItem(
+                      icon: Images.upcoming_event,
+                      text: 'Update Prayer Time',
+                      onTap: () =>{
+                        Get.to(PrayerTimeUpdateScreen())
 
+                      }
+
+                  ):SizedBox(),
 
 
                   Get.find<AuthController>().isLoggedIn()?

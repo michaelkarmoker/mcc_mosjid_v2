@@ -25,16 +25,17 @@ class AuthRepo {
     return await apiClient.postData(AppConstants.REGISTER_URI, signUpBody.toJson());
   }*/
 
-  Future<Response> login({required LoginBody loginBody}) async {
-    String ask="mccsl_app_secret_key";
-    final bytes = utf8.encode(ask);
-    final base64ASK = base64.encode(bytes);
-    print(base64ASK);
-    final id = utf8.encode(loginBody.password!);
-    final base64AuthId = base64.encode(id);
+  Future<Response> login({required LoginRequestBody loginBody}) async {
+  /*  String ask="mccsl_app_secret_key";
+    final bytes = utf8.encode(ask);*/
+    final base64ASK ="bWNjc2xfYXBwX3NlY3JldF9rZXk=";
+   // print(base64ASK);
+    /*final id = utf8.encode(loginBody.loginData![0].usersEmail!);
+    final pass = utf8.encode(loginBody.loginData![0].usersPassword!);
+     loginBody.loginData![0].usersEmail = base64.encode(id);
+     loginBody.loginData![0].usersPassword = base64.encode(pass);*/
    // return await apiClient.postData(AppConstants.LOGIN_URI, {"jsonData":jsonEncode(loginBody.toJson())});
-    return await apiClient.getData(AppConstants.LOGIN_URI, query: {
-      "mauth":base64AuthId,
+    return await apiClient.postData(AppConstants.END_URI,loginBody.toJson(), query: {
       "ask":base64ASK
     });
   }
@@ -74,24 +75,17 @@ class AuthRepo {
 
 
   // for  Remember Email
-  Future<void> saveUserNameAndPassword(String password,) async {
+  Future<void> saveUserNameAndPassword(String userName,String password,) async {
     try {
       await sharedPreferences.setString(AppConstants.USER_PASSWORD, password);
+      await sharedPreferences.setString(AppConstants.USER_NAME, userName);
 
 
     } catch (e) {
       throw e;
     }
   }
-  Future<void> saveStudentIdAndMobile(String id, String mobile,) async {
-    try {
-      await sharedPreferences.setString(AppConstants.STUDENT_ID, id);
-      await sharedPreferences.setString(AppConstants.STUDENT_MOBILE, mobile);
 
-    } catch (e) {
-      throw e;
-    }
-  }
   Future<void> saveUserType(  String type,) async {
     try {
       await sharedPreferences.setString(AppConstants.USER_TYPE, type);
