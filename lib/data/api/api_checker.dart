@@ -1,8 +1,8 @@
 
 
-import 'package:qibla_finder/controller/auth_controller.dart';
-import 'package:qibla_finder/view/base/custom_snackbar.dart';
-import 'package:qibla_finder/view/screen/auth/signIn.dart';
+import 'package:mccs_masjid/controller/auth_controller.dart';
+import 'package:mccs_masjid/view/base/custom_snackbar.dart';
+import 'package:mccs_masjid/view/screen/auth/signIn.dart';
 import 'package:get/get.dart';
 
 

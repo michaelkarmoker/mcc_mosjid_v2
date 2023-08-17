@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:qibla_finder/util/styles.dart';
-import 'package:qibla_finder/view/base/shakeWidget.dart';
+import 'package:mccs_masjid/util/styles.dart';
+import 'package:mccs_masjid/view/base/shakeWidget.dart';
 
 import '../../../../util/app_constants.dart';
 import '../../../base/custom_button.dart';

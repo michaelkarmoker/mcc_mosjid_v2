@@ -2,8 +2,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qibla_finder/view/base/custom_button.dart';
-import 'package:qibla_finder/view/base/shakeWidget.dart';
+import 'package:mccs_masjid/view/base/custom_button.dart';
+import 'package:mccs_masjid/view/base/shakeWidget.dart';
 import 'package:shimmer/shimmer.dart';
 
 
@@ -22,7 +22,7 @@ class BannerView extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       width: MediaQuery.of(context).size.width,
-      height: Get.height/3.5,
+      height: 250,
       padding: EdgeInsets.only(top: Dimensions.PADDING_SIZE_DEFAULT),
       child: homeController.sliders!.length>0 ? Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

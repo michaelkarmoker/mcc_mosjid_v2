@@ -1,4 +1,4 @@
-import 'package:qibla_finder/view/screen/compass_screen/widget/topGradiantContainer.dart';
+import 'package:mccs_masjid/view/screen/compass_screen/widget/topGradiantContainer.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../util/styles.dart';

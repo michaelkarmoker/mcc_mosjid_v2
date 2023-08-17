@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:qibla_finder/controller/compass_controller.dart';
-import 'package:qibla_finder/helper/date_converter.dart';
-import 'package:qibla_finder/view/base/custom_button.dart';
-import 'package:qibla_finder/view/base/custom_text_field.dart';
-import 'package:qibla_finder/view/screen/prayer_time_screen/widget/prayer_time_widget.dart';
+import 'package:mccs_masjid/controller/compass_controller.dart';
+import 'package:mccs_masjid/helper/date_converter.dart';
+import 'package:mccs_masjid/view/base/custom_button.dart';
+import 'package:mccs_masjid/view/base/custom_text_field.dart';
+import 'package:mccs_masjid/view/screen/prayer_time_screen/widget/prayer_time_widget.dart';
 
 import '../../../util/dimensions.dart';
 import '../../../util/styles.dart';
@@ -82,7 +82,7 @@ class _PrayerTimeScreenState extends State<AboutUsScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: Get.height/3.5,
+                          height: 220,
                           padding: EdgeInsets.all(10),
                            decoration: BoxDecoration(
                              color: Colors.black87.withOpacity(0.2),
@@ -111,7 +111,7 @@ class _PrayerTimeScreenState extends State<AboutUsScreen> {
                       SizedBox(width: 10,),
                       Expanded(
                         child: Container(
-                          height: Get.height/3.5,
+                          height: 220,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               color: Colors.black87.withOpacity(0.2),
@@ -144,7 +144,7 @@ class _PrayerTimeScreenState extends State<AboutUsScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: Get.height/3.5,
+                          height: 220,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               color: Colors.black87.withOpacity(0.2),

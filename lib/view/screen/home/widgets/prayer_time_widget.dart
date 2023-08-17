@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:qibla_finder/controller/prayer_controller.dart';
-import 'package:qibla_finder/util/dimensions.dart';
-import 'package:qibla_finder/view/screen/prayer_time_screen/prayer_time_screen.dart';
+import 'package:mccs_masjid/controller/prayer_controller.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
+import 'package:mccs_masjid/view/screen/prayer_time_screen/prayer_time_screen.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 
 import '../../../../util/styles.dart';
@@ -40,7 +41,7 @@ class PrayerTimeSliderWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 15,),
                 Container(
-                  height: Get.height/4.6,
+                  height: 170,
 
 
 
@@ -107,7 +108,7 @@ class PrayerTimeSliderWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 15,),
                         Container(
-                          height: Get.height/4.6,
+                          height:170,
                           child: ListView.builder(
                             itemCount: 3,
                             shrinkWrap: true,

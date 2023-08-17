@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qibla_finder/controller/home_controller.dart';
-import 'package:qibla_finder/util/app_constants.dart';
-import 'package:qibla_finder/view/screen/prayer_time_update_screen/prayer_time_update_screen.dart';
-import 'package:qibla_finder/view/screen/webViewPage/web_view_screen.dart';
+import 'package:mccs_masjid/controller/home_controller.dart';
+import 'package:mccs_masjid/util/app_constants.dart';
+import 'package:mccs_masjid/view/screen/prayer_time_update_screen/prayer_time_update_screen.dart';
+import 'package:mccs_masjid/view/screen/webViewPage/web_view_screen.dart';
 
 
 import 'package:url_launcher/url_launcher.dart';
@@ -40,99 +40,97 @@ class _DrawerState extends State<DrawerLayout> {
 
           child: Stack(
             children: [
-              ListView(
-
+              Column(
                 children: [
                   createDrawerHeader(context),
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        Get.find<AuthController>().isLoggedIn()?
+                        createDrawerBodyItem(
+                            icon: Images.logout,
+                            text: 'Member Logout',
+                            onTap: (){
+                              Navigator.pop(context);
+                              Get.find<AuthController>().signOut();
+                              Get.find<HomeController>().update();
 
 
-                  createDrawerBodyItem(
-                      icon: Images.donation,
-                      text: 'Donation Now',
-                      onTap: () =>{
-                          Navigator.of(context).pop(),
-                        Get.to(WebViewPage(url: AppConstants.donationLink, title: 'Donation',))
-                      }
 
+                            }
+
+                        ):createDrawerBodyItem(
+                            icon: Images.login,
+                            text: 'Member Login',
+                            onTap: () =>{
+                              Get.to(SignIn(exitFromApp: false,))
+
+                            }
+
+                        ),
+                        Get.find<AuthController>().isLoggedIn()?createDrawerBodyItem(
+                            icon: Images.upcoming_event,
+                            text: 'Update Prayer Time',
+                            onTap: () =>{
+                              Get.to(PrayerTimeUpdateScreen())
+
+                            }
+
+                        ):SizedBox(),
+                        createDrawerBodyItem(
+                            icon: Images.donation,
+                            text: 'Donation Now',
+                            onTap: () =>{
+                                Navigator.of(context).pop(),
+                              Get.to(WebViewPage(url: AppConstants.donationLink, title: 'Donation',))
+                            }
+
+                        ),
+                        createDrawerBodyItem(
+                            icon: Images.volunteer,
+                            text: 'Become our volunteer',
+                            onTap: () =>{
+                              Navigator.of(context).pop(),
+                              Get.to(WebViewPage(url: AppConstants.volantiar, title: 'Become our volunteer',))
+                            }
+
+                        ),
+
+                        createDrawerBodyItem(
+                            icon: Images.contactUs,
+                            text: 'Contact Us',
+                            onTap: () =>{
+                              Navigator.of(context).pop(),
+                              Get.to(WebViewPage(url: AppConstants.contactList, title: 'Contact Us',))
+
+                            }
+
+                        ),
+                        createDrawerBodyItem(
+                            icon: Images.about,
+                            text: 'About Us',
+                            onTap: () =>{
+                              Get.to(AboutUsScreen())
+
+                            }
+
+                        ),
+
+
+
+
+
+                        SizedBox(height: 150,),
+
+                      ],
+                    ),
                   ),
-                  createDrawerBodyItem(
-                      icon: Images.volunteer,
-                      text: 'Become our volunteer',
-                      onTap: () =>{
-                        Navigator.of(context).pop(),
-                        Get.to(WebViewPage(url: AppConstants.volantiar, title: 'Become our volunteer',))
-                      }
-
-                  ),
-                  createDrawerBodyItem(
-                      icon: Images.upcoming_event,
-                      text: 'Upcoming Event',
-                      onTap: () =>{
-
-
-                      }
-
-                  ),
-                  createDrawerBodyItem(
-                      icon: Images.contactUs,
-                      text: 'Contact Us',
-                      onTap: () =>{
-                        Navigator.of(context).pop(),
-                        Get.to(WebViewPage(url: AppConstants.contactList, title: 'Contact Us',))
-
-                      }
-
-                  ),
-                  createDrawerBodyItem(
-                      icon: Images.about,
-                      text: 'About Us',
-                      onTap: () =>{
-                        Get.to(AboutUsScreen())
-
-                      }
-
-                  ),
-                  Get.find<AuthController>().isLoggedIn()?createDrawerBodyItem(
-                      icon: Images.upcoming_event,
-                      text: 'Update Prayer Time',
-                      onTap: () =>{
-                        Get.to(PrayerTimeUpdateScreen())
-
-                      }
-
-                  ):SizedBox(),
-
-
-                  Get.find<AuthController>().isLoggedIn()?
-                  createDrawerBodyItem(
-                      icon: Images.logout,
-                      text: 'Member Logout',
-                      onTap: (){
-                        Navigator.pop(context);
-                       Get.find<AuthController>().signOut();
-                       Get.find<HomeController>().update();
-
-
-
-                      }
-
-                  ):createDrawerBodyItem(
-                      icon: Images.login,
-                      text: 'Member Login',
-                      onTap: () =>{
-                        Get.to(SignIn(exitFromApp: false,))
-
-                      }
-
-                  ),
-
-                  SizedBox(height: 50,),
-
                 ],
               ),
               Positioned(
                   bottom: 0,
                   child:Container(
+                    color: Color(0xffFAFAFA),
                     width: (Get.width/4)*3,
                     child: Center(
                       child: Column(

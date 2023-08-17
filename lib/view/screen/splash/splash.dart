@@ -1,9 +1,9 @@
-import 'package:qibla_finder/controller/auth_controller.dart';
-import 'package:qibla_finder/util/dimensions.dart';
-import 'package:qibla_finder/util/styles.dart';
-import 'package:qibla_finder/view/screen/auth/signIn.dart';
-import 'package:qibla_finder/view/screen/dashboard/dashboard_screen.dart';
-import 'package:qibla_finder/view/screen/home/home_screen.dart';
+import 'package:mccs_masjid/controller/auth_controller.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
+import 'package:mccs_masjid/util/styles.dart';
+import 'package:mccs_masjid/view/screen/auth/signIn.dart';
+import 'package:mccs_masjid/view/screen/dashboard/dashboard_screen.dart';
+import 'package:mccs_masjid/view/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 

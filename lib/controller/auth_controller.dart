@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:http/http.dart' as h;
 
-
-import 'package:qibla_finder/data/model/body/login_body.dart';
-import 'package:qibla_finder/view/base/custom_snackbar.dart';
-import 'package:qibla_finder/view/screen/home/home_screen.dart';
+import 'package:mccs_masjid/data/model/body/login_body.dart';
+import 'package:mccs_masjid/view/base/custom_snackbar.dart';
+import 'package:mccs_masjid/view/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 
 
 import '../data/repository/auth_repo.dart';
+import '../util/InternetCheck.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
@@ -54,38 +55,37 @@ class AuthController extends GetxController implements GetxService {
     _isLoading = true;
     update();
 
-    Response response = await authRepo.login(loginBody: loginBody);
+    h.Response response = await authRepo.login(loginBody: loginBody);
 
 
+if(await InternetCheck.checkUserConnection()) {
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body);
 
-    if (response.statusCode == 200) {
-      var data= jsonDecode(response.body);
-
-      if(data["statusCode"]==200){
-        if(_isActiveRememberMe){
-          await authRepo.saveUserNameAndPassword(loginBody!.loginData![0].usersEmail!,loginBody.loginData![0].usersPassword!);
-        }else{
-          await authRepo.clearUserNumberAndPassword();
-        }
-
-
-        await authRepo.saveUserToken(data["apps_token"]);
-
-
-
-        showCustomSnackBar("Login Successfully",isError: false);
-        Get.offAll(HomeScreen());
-      }else{
-        showCustomSnackBar("Login Failed",isError: true);
+    if (data["statusCode"] == 200) {
+      if (_isActiveRememberMe) {
+        await authRepo.saveUserNameAndPassword(
+            loginBody!.loginData![0].usersEmail!,
+            loginBody.loginData![0].usersPassword!);
+      } else {
+        await authRepo.clearUserNumberAndPassword();
       }
 
 
+      await authRepo.saveUserToken(data["apps_token"]);
 
+
+      showCustomSnackBar("Login Successfully", isError: false);
+      Get.offAll(HomeScreen());
     } else {
-
-      showCustomSnackBar("Something wrong with internet");
-
+      showCustomSnackBar("Login Failed, User mail or password is incorrect", isError: true);
     }
+  } else {
+    showCustomSnackBar("Something wrong with internet");
+  }
+}else{
+  showCustomSnackBar("No Internet.Please check your connection");
+}
 
     _isLoading = false;
     update();

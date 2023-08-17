@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:qibla_finder/controller/prayer_controller.dart';
-import 'package:qibla_finder/data/model/response/PrayerTimeResponse.dart';
-import 'package:qibla_finder/helper/date_converter.dart';
-import 'package:qibla_finder/util/dimensions.dart';
+import 'package:mccs_masjid/controller/prayer_controller.dart';
+import 'package:mccs_masjid/data/model/response/PrayerTimeResponse.dart';
+import 'package:mccs_masjid/helper/date_converter.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
 
 import '../../../../util/styles.dart';
 import 'custom_edit_dialog.dart';

@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:qibla_finder/helper/date_converter.dart';
-import 'package:qibla_finder/util/dimensions.dart';
-import 'package:qibla_finder/util/styles.dart';
-import 'package:qibla_finder/util/app_constants.dart';
+import 'package:mccs_masjid/helper/date_converter.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
+import 'package:mccs_masjid/util/styles.dart';
+import 'package:mccs_masjid/util/app_constants.dart';
 
 class KhudbaWidgetList extends StatelessWidget {
   final List<Khutbah> khudbahList;

@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qibla_finder/util/styles.dart';
+import 'package:mccs_masjid/util/styles.dart';
+import 'package:sizer/sizer.dart';
 
 
 import '../../../controller/auth_controller.dart';
@@ -33,9 +34,9 @@ Widget createDrawerHeader(BuildContext context) {
            crossAxisAlignment: CrossAxisAlignment.center,
            children: [
              SizedBox(height:Get.height/9,),
-             Image.asset("assets/image/logo.png",height: 100,width: 100,),
+             Image.asset("assets/image/logo.png",height: 60.sp,width: 60.sp,),
              SizedBox(height: 10,),
-             Text("MCC MASJID SCARBOROUGH",style: robotoMedium.copyWith(color:Colors.amberAccent,fontSize: 14),),
+             Text("MCC MASJID SCARBOROUGH",style: robotoMedium.copyWith(color:Colors.amberAccent,fontSize: 11.sp),),
            ],
          ),
        ),

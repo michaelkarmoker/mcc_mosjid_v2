@@ -1,4 +1,4 @@
-name: qibla_finder
+name: mccs_masjid
 description: A new Flutter project.
 
 
@@ -27,6 +27,7 @@ dependencies:
   carousel_slider: ^4.0.0-nullsafety.0
   permission_handler: ^10.2.0
   geodart: ^0.2.8
+  sizer: ^2.0.15
   geocoding: ^2.1.0
   #shimmer_animation: ^2.0.0
   shimmer: ^3.0.0
@@ -35,6 +36,7 @@ dependencies:
   hijri: ^3.0.0
   internet_connection_checker: ^1.0.0+1
   vibration:
+  http:
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +67,7 @@ flutter:
     - assets/banner/
     - assets/service_icon/
     - assets/font/
+    - assets/certi/
   fonts:
     - family: Poppins
       fonts:

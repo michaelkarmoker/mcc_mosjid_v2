@@ -1,4 +1,4 @@
-# qibla_finder
+# mccs_masjid
 
 A new Flutter project.
 

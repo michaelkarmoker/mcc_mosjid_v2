@@ -1,20 +1,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qibla_finder/controller/compass_controller.dart';
-import 'package:qibla_finder/controller/home_controller.dart';
-import 'package:qibla_finder/controller/prayer_controller.dart';
-import 'package:qibla_finder/util/dimensions.dart';
-import 'package:qibla_finder/util/styles.dart';
-import 'package:qibla_finder/view/base/custom_button.dart';
-import 'package:qibla_finder/view/base/custom_snackbar.dart';
-import 'package:qibla_finder/view/screen/dashboard/dashboard_screen.dart';
-import 'package:qibla_finder/view/screen/home/widgets/KhudbaWidgetList.dart';
-import 'package:qibla_finder/view/screen/home/widgets/OurServiceWidgetList.dart';
-import 'package:qibla_finder/view/screen/home/widgets/banner_view.dart';
-import 'package:qibla_finder/view/screen/home/widgets/compass_widget.dart';
-import 'package:qibla_finder/view/screen/home/widgets/donation_widget.dart';
-import 'package:qibla_finder/view/screen/home/widgets/prayer_time_widget.dart';
+import 'package:mccs_masjid/controller/compass_controller.dart';
+import 'package:mccs_masjid/controller/home_controller.dart';
+import 'package:mccs_masjid/controller/prayer_controller.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
+import 'package:mccs_masjid/util/styles.dart';
+import 'package:mccs_masjid/view/base/custom_button.dart';
+import 'package:mccs_masjid/view/base/custom_snackbar.dart';
+import 'package:mccs_masjid/view/screen/dashboard/dashboard_screen.dart';
+import 'package:mccs_masjid/view/screen/home/widgets/KhudbaWidgetList.dart';
+import 'package:mccs_masjid/view/screen/home/widgets/OurServiceWidgetList.dart';
+import 'package:mccs_masjid/view/screen/home/widgets/banner_view.dart';
+import 'package:mccs_masjid/view/screen/home/widgets/compass_widget.dart';
+import 'package:mccs_masjid/view/screen/home/widgets/donation_widget.dart';
+import 'package:mccs_masjid/view/screen/home/widgets/prayer_time_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 
@@ -66,9 +66,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         drawer: DrawerLayout(),
         appBar: AppBar(
 
-          centerTitle: true,
+
           title: Padding(
-            padding: const EdgeInsets.only(right: 25.0),
+            padding: const EdgeInsets.only(right: 0.0),
             child: Container(child: Center(child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

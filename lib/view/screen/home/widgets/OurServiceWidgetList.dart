@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:qibla_finder/helper/date_converter.dart';
-import 'package:qibla_finder/util/dimensions.dart';
-import 'package:qibla_finder/util/styles.dart';
+import 'package:mccs_masjid/helper/date_converter.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
+import 'package:mccs_masjid/util/styles.dart';
 
 class OurServiceWidgetList extends StatelessWidget {
   final List<Service> serviceList;
@@ -21,8 +21,7 @@ class OurServiceWidgetList extends StatelessWidget {
           GridView.builder(
               itemCount:serviceList.length,
                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                   childAspectRatio:  MediaQuery.of(context).size.width /
-                       (MediaQuery.of(context).size.height / 1.3),
+                   childAspectRatio: 0.7,
                    mainAxisSpacing:15 ,
                    crossAxisSpacing: 15,
 

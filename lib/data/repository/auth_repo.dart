@@ -8,16 +8,17 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 
-
+import 'package:http/http.dart' as h;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../util/app_constants.dart';
 import '../api/api_client.dart';
+import '../api/api_client_http.dart';
 import '../model/body/login_body.dart';
 import '../model/body/signup_body.dart';
 
 class AuthRepo {
-  final ApiClient apiClient;
+  final ApiClientOfHttp apiClient;
   final SharedPreferences sharedPreferences;
   AuthRepo({required this.apiClient, required this.sharedPreferences});
 
@@ -25,7 +26,7 @@ class AuthRepo {
     return await apiClient.postData(AppConstants.REGISTER_URI, signUpBody.toJson());
   }*/
 
-  Future<Response> login({required LoginRequestBody loginBody}) async {
+  Future<h.Response> login({required LoginRequestBody loginBody}) async {
   /*  String ask="mccsl_app_secret_key";
     final bytes = utf8.encode(ask);*/
     final base64ASK ="bWNjc2xfYXBwX3NlY3JldF9rZXk=";
@@ -35,9 +36,7 @@ class AuthRepo {
      loginBody.loginData![0].usersEmail = base64.encode(id);
      loginBody.loginData![0].usersPassword = base64.encode(pass);*/
    // return await apiClient.postData(AppConstants.LOGIN_URI, {"jsonData":jsonEncode(loginBody.toJson())});
-    return await apiClient.postData(AppConstants.END_URI,loginBody.toJson(), query: {
-      "ask":base64ASK
-    });
+    return await apiClient.postData(AppConstants.END_URI+"ask=${base64ASK}",jsonEncode(loginBody.toJson()));
   }
 
 

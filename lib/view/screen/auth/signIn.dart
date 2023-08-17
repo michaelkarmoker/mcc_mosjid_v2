@@ -3,9 +3,9 @@ import 'dart:async';
 import 'dart:io';
 
 
-import 'package:qibla_finder/util/images.dart';
-import 'package:qibla_finder/view/base/custom_button.dart';
-import 'package:qibla_finder/view/base/custom_text_field.dart';
+import 'package:mccs_masjid/util/images.dart';
+import 'package:mccs_masjid/view/base/custom_button.dart';
+import 'package:mccs_masjid/view/base/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -100,7 +100,7 @@ class _signInState extends State<SignIn> {
 
                     image: DecorationImage(
                       image: AssetImage("assets/image/login_bg.jpg"),
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   child: Container(

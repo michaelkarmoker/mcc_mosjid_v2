@@ -1,5 +1,5 @@
 
-import 'package:qibla_finder/util/images.dart';
+import 'package:mccs_masjid/util/images.dart';
 import 'package:flutter/cupertino.dart';
 
 

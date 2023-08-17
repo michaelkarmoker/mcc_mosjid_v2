@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:qibla_finder/controller/auth_controller.dart';
-import 'package:qibla_finder/controller/compass_controller.dart';
-import 'package:qibla_finder/controller/prayer_controller.dart';
-import 'package:qibla_finder/helper/date_converter.dart';
-import 'package:qibla_finder/view/screen/prayer_time_screen/widget/prayer_time_widget.dart';
+import 'package:mccs_masjid/controller/auth_controller.dart';
+import 'package:mccs_masjid/controller/compass_controller.dart';
+import 'package:mccs_masjid/controller/prayer_controller.dart';
+import 'package:mccs_masjid/helper/date_converter.dart';
+import 'package:mccs_masjid/view/screen/prayer_time_screen/widget/prayer_time_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/dimensions.dart';
@@ -155,7 +155,7 @@ bool isEdit=false;
                      ],
                    ) ,
                  ),
-                  controller.prayerTimeList.length>0?PrayerTimeWidget(date: HijriCalendar.now().toFormat("MMMM dd yyyy"), controller: controller,):SizedBox()
+                  controller.prayerTimeList.length>0?Expanded(child: PrayerTimeWidget(date: HijriCalendar.now().toFormat("MMMM dd yyyy"), controller: controller,)):SizedBox()
                  ],
               ),
             ),

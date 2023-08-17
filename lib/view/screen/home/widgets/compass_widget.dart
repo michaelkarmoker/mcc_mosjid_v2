@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/services.dart';
-import 'package:qibla_finder/controller/compass_controller.dart';
-import 'package:qibla_finder/util/dimensions.dart';
-import 'package:qibla_finder/view/screen/compass_screen/widget/clipShadowShadowPainter.dart';
-import 'package:qibla_finder/view/screen/compass_screen/widget/compassViewPainterWidgets.dart';
-import 'package:qibla_finder/view/screen/compass_screen/widget/compass_display.dart';
-import 'package:qibla_finder/view/screen/compass_screen/widget/neumorphism.dart';
-import 'package:qibla_finder/view/screen/compass_screen/widget/triangle_shape.dart';
+import 'package:mccs_masjid/controller/compass_controller.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
+import 'package:mccs_masjid/view/screen/compass_screen/widget/clipShadowShadowPainter.dart';
+import 'package:mccs_masjid/view/screen/compass_screen/widget/compassViewPainterWidgets.dart';
+import 'package:mccs_masjid/view/screen/compass_screen/widget/compass_display.dart';
+import 'package:mccs_masjid/view/screen/compass_screen/widget/neumorphism.dart';
+import 'package:mccs_masjid/view/screen/compass_screen/widget/triangle_shape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';

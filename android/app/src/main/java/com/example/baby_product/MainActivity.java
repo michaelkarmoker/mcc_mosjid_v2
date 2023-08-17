@@ -1,4 +1,4 @@
-package com.example.qibla_finder;
+package com.mccsmasjid.app;
 
 import io.flutter.embedding.android.FlutterActivity;
 

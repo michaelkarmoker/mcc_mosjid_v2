@@ -1,8 +1,8 @@
-import 'package:qibla_finder/controller/prayer_controller.dart';
-import 'package:qibla_finder/data/model/request/PrayerTimeUpdateRequest.dart';
-import 'package:qibla_finder/util/dimensions.dart';
-import 'package:qibla_finder/util/images.dart';
-import 'package:qibla_finder/util/styles.dart';
+import 'package:mccs_masjid/controller/prayer_controller.dart';
+import 'package:mccs_masjid/data/model/request/PrayerTimeUpdateRequest.dart';
+import 'package:mccs_masjid/util/dimensions.dart';
+import 'package:mccs_masjid/util/images.dart';
+import 'package:mccs_masjid/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

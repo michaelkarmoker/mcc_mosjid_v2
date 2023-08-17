@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 
-import 'package:qibla_finder/data/model/body/login_body.dart';
-import 'package:qibla_finder/view/base/custom_snackbar.dart';
-import 'package:qibla_finder/view/screen/home/home_screen.dart';
+import 'package:mccs_masjid/data/model/body/login_body.dart';
+import 'package:mccs_masjid/view/base/custom_snackbar.dart';
+import 'package:mccs_masjid/view/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';

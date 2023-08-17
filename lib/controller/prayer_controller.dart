@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
-
-import 'package:qibla_finder/data/model/body/login_body.dart';
-import 'package:qibla_finder/data/model/request/PrayerTimeUpdateRequest.dart';
-import 'package:qibla_finder/data/model/response/PrayerTimeResponse.dart';
-import 'package:qibla_finder/data/repository/prayer_repo.dart';
-import 'package:qibla_finder/view/base/custom_snackbar.dart';
-import 'package:qibla_finder/view/screen/home/home_screen.dart';
+import 'package:http/http.dart' as h;
+import 'package:mccs_masjid/data/model/body/login_body.dart';
+import 'package:mccs_masjid/data/model/request/PrayerTimeUpdateRequest.dart';
+import 'package:mccs_masjid/data/model/response/PrayerTimeResponse.dart';
+import 'package:mccs_masjid/data/repository/prayer_repo.dart';
+import 'package:mccs_masjid/view/base/custom_snackbar.dart';
+import 'package:mccs_masjid/view/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -47,7 +47,7 @@ class PrayerController extends GetxController implements GetxService {
     }else{
       prayerTimeList=[];
       if(await InternetCheck.checkUserConnection()){
-        Response response = await prayerRepo.getPrayertime();
+        h.Response response = await prayerRepo.getPrayertime();
         if (response.statusCode == 200) {
 
 
@@ -98,7 +98,7 @@ class PrayerController extends GetxController implements GetxService {
 
 
       if(await InternetCheck.checkUserConnection()){
-        Response response = await prayerRepo.updatePrayerTime(data);
+        h.Response response = await prayerRepo.updatePrayerTime(data);
         if (response.statusCode == 200) {
 
 

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qibla_finder/view/screen/dashboard/widget/bottom_nav_item.dart';
+import 'package:mccs_masjid/view/screen/dashboard/widget/bottom_nav_item.dart';
 
 
 import '../../../util/images.dart';
