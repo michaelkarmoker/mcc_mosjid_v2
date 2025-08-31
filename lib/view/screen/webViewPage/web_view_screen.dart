@@ -104,7 +104,7 @@ class BkashPaymentState extends State<WebViewPage> {
                   InAppWebView(
                     // access the html file on local
                     initialUrlRequest: URLRequest(
-                        url: Uri.parse(widget.url)
+                      url: WebUri.uri(Uri.parse(widget.url)),
                     ),
                     initialOptions: InAppWebViewGroupOptions(
                       crossPlatform: InAppWebViewOptions(

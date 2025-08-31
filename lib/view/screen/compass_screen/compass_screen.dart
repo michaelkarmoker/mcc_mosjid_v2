@@ -79,7 +79,12 @@ class _CompassScreenState extends State<CompassScreen> with SingleTickerProvider
       body: GetBuilder<CompassController>(
 
         builder: (controller) {
-          return !controller.isLoading?Scaffold(
+          return controller.isLoading?Scaffold(
+            backgroundColor:compassPrimaryColor,
+            body: Container(
+              child: Center(child: CircularProgressIndicator(color: Colors.red  ,)),
+            ),
+          ):Scaffold(
           backgroundColor:compassPrimaryColor,
           body: StreamBuilder(
               stream: FlutterCompass.events,
@@ -238,11 +243,6 @@ class _CompassScreenState extends State<CompassScreen> with SingleTickerProvider
                 );
               }
           ),
-          ):Scaffold(
-            backgroundColor:compassPrimaryColor,
-            body: Container(
-              child: Center(child: CircularProgressIndicator(color: greenColor,)),
-            ),
           );
 
         }

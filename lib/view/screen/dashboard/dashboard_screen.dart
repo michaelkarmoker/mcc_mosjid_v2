@@ -93,10 +93,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 
         bottomNavigationBar: BottomAppBar(
-          color: Colors.white,
-          elevation: 5,
-
-          notchMargin: 5,
+          color: Colors.black,
           shape: CircularNotchedRectangle(),
 
           child: Container(
@@ -109,7 +106,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             child: Container(
               color: Colors.black26.withOpacity(0.7),
-              height: 70,
+              height: Get.width>500?70:60,
               child: Padding(
                 padding: EdgeInsets.all(0),
                 child: Row(children: [

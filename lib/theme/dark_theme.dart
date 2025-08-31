@@ -8,7 +8,7 @@ ThemeData dark = ThemeData(
   backgroundColor: Color(0xFF343636),
   errorColor: Color(0xFFdd3135),
   brightness: Brightness.dark,
-  accentColor: Color(0xFFffbd5c),
+
   hintColor: Color(0xFFbebebe),
   cardColor: Colors.black,
   colorScheme: ColorScheme.dark(primary: Color(0xFFffbd5c)),

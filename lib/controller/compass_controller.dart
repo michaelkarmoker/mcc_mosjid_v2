@@ -23,7 +23,7 @@ import '../data/repository/auth_repo.dart';
 class CompassController extends GetxController implements GetxService {
 
 
-  bool isLoading=true;
+  bool isLoading=false;
    bool hasPermission=false;
   Position? position=null;
   double bearing=0.0;
@@ -71,13 +71,13 @@ class CompassController extends GetxController implements GetxService {
     }else {
       isVibration=await Vibration.hasVibrator()??false;
       await getBearing();
-      getLocation();
+      await getLocation();
     }
   }
 
 Future<void> getBearing() async {
-  isLoading=true;
-  update();
+  /*isLoading=true;
+  update();*/
   if(position==null){
     position=await Geolocator.getCurrentPosition();
     if(position!=null){
@@ -94,8 +94,9 @@ Future<void> getBearing() async {
   }
 
 
+  /*print("is loadin false================");
   isLoading=false;
-  update();
+  update();*/
 }
   Future<void> getLocation() async {
 
